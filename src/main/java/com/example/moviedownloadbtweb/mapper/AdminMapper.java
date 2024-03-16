@@ -13,13 +13,13 @@ import java.util.List;
 @Mapper
 public interface AdminMapper {
     /**
-     * 查询全部用户信息
+     * 查询全部用户信息的sql
      */
     @Select("SELECT * FROM user")
     List<User> listUser();
 
     /**
-     * 删除用户信息 by id
+     * 删除用户信息 by id的sql
      * @param id
      */
     @Delete("DELETE FROM user WHERE id = #{id}")

@@ -16,7 +16,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     /**
-     * 用户注册，重写mapper接口中的方法
+     * 用户注册，重写service接口中的方法，调用mapper接口中对应的insert方法
      * @param user
      */
     @Override
@@ -25,7 +25,7 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 用户修改信息重写mapper接口的方法
+     * 用户修改信息重写service接口的方法，调用mapper接口中对应的update方法
      * @param user
      */
     @Override

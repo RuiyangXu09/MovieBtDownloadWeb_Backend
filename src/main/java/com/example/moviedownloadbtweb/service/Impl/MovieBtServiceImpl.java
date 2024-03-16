@@ -18,7 +18,7 @@ public class MovieBtServiceImpl implements MovieBtService {
     MovieBtMapper movieBtMapper;
 
     /**
-     * 新增电影bt，重写mapper接口中的方法，时间设置为LocalDate.now()
+     * 新增电影bt，重写service接口中的方法，时间设置为LocalDate.now()，调用mapper接口中对应的insert方法
      * @param movie
      */
     @Override
@@ -26,5 +26,15 @@ public class MovieBtServiceImpl implements MovieBtService {
         movie.setCreateTime(LocalDate.now());
         movie.setUpdateTime(LocalDate.now());
         movieBtMapper.addMovie(movie);
+    }
+
+    /**
+     * 修改电影信息，重写service接口中的方法，将updateTime设置为LocalDate.now()，调用mapper接口中对应的update方法
+     * @param movieBt
+     */
+    @Override
+    public void updateMovie(MovieBt movieBt) {
+        movieBt.setUpdateTime(LocalDate.now());
+        movieBtMapper.updateMovie(movieBt);
     }
 }

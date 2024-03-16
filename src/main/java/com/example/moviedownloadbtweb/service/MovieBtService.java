@@ -11,4 +11,10 @@ public interface MovieBtService {
      * @param movie
      */
     void addMovie(MovieBt movie);
+
+    /**
+     * 修改电影信息
+     * @param movieBt
+     */
+    void updateMovie(MovieBt movieBt);
 }
