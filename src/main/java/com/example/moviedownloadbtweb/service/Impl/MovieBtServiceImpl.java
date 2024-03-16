@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 /**
  * 电影各项功能的实现类
@@ -36,5 +37,23 @@ public class MovieBtServiceImpl implements MovieBtService {
     public void updateMovie(MovieBt movieBt) {
         movieBt.setUpdateTime(LocalDate.now());
         movieBtMapper.updateMovie(movieBt);
+    }
+
+    /**
+     * 查询电影信息，重写service接口中的方法，调用mapper接口中对应的select方法
+     * @return
+     */
+    @Override
+    public List<MovieBt> listMovie() {
+        return movieBtMapper.listMovie();
+    }
+
+    /**
+     * 删除电影信息，重写service接口中的方法，调用mapper接口中对应的delete方法
+     * @param id
+     */
+    @Override
+    public void deleteMovie(Integer id) {
+        movieBtMapper.deleteMovie(id);
     }
 }

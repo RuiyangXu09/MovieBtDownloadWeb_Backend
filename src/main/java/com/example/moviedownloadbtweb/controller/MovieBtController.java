@@ -6,6 +6,8 @@ import com.example.moviedownloadbtweb.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * 电影种子信息controller
  */
@@ -35,6 +37,24 @@ public class MovieBtController {
     @PutMapping(value = "updateMovie")
     public Result updateMovie(@RequestBody MovieBt movieBt){
         movieBtService.updateMovie(movieBt);
+        return Result.success();
+    }
+
+    /**
+     * 列出电影信息
+     */
+    @GetMapping(value = "listMovie")
+    public Result listMovie(){
+        List<MovieBt> movieBtList = movieBtService.listMovie();
+        return Result.success(movieBtList);
+    }
+
+    /**
+     * 删除电影信息
+     */
+    @DeleteMapping(value = "deleteMovie")
+    public Result deleteMovie(Integer id){
+        movieBtService.deleteMovie(id);
         return Result.success();
     }
 }

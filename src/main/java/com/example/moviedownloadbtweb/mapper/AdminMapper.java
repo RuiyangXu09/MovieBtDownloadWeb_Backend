@@ -14,6 +14,7 @@ import java.util.List;
 public interface AdminMapper {
     /**
      * 查询全部用户信息的sql
+     * @param
      */
     @Select("SELECT * FROM user")
     List<User> listUser();
