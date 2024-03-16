@@ -42,7 +42,12 @@ public class Result {
     }
 
     public static Result success(Object data){
-        return new Result(1, data, "Successful");
+        return new Result(1, data, "Success");
+    }
+
+    //重载方法，无data传入参数
+    public static Result success(){
+        return new Result(1, null, "Success");
     }
 
     //失败响应，只传入msg作为参数，只返回msg和code状态码
