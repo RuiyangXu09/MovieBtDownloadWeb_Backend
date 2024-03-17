@@ -5,6 +5,7 @@ import com.example.moviedownloadbtweb.mapper.MovieBtMapper;
 import com.example.moviedownloadbtweb.service.MovieBtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -55,5 +56,25 @@ public class MovieBtServiceImpl implements MovieBtService {
     @Override
     public void deleteMovie(Integer id) {
         movieBtMapper.deleteMovie(id);
+    }
+
+    /**
+     * 根据点击次数列出电影信息，由大到小，重写service接口中的方法，调用mapper接口中对应的select方法
+     * @return
+     */
+    @Override
+    public List<MovieBt> listMovieByClickNumber() {
+        return movieBtMapper.listMovieByClickNumber();
+    }
+
+    /**
+     * 访问该url后，数据库中的count_download次数+1
+     * 同时添加注解@Transactional来启用事务管理，该注解确保操作的原子性
+     * 当多个线程同时尝试更新同一个URL的点击次数时，Spring的事务管理器会确保每次只有一个线程能够成功更新数据，从而避免了数据不一致的问题
+     */
+    @Override
+    @Transactional
+    public void countAddOne(String btDownloadUrl) {
+        movieBtMapper.countAddOne(btDownloadUrl);
     }
 }

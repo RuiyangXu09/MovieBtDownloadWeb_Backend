@@ -4,6 +4,7 @@ import com.example.moviedownloadbtweb.domain.MovieBt;
 import com.example.moviedownloadbtweb.service.MovieBtService;
 import com.example.moviedownloadbtweb.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -55,6 +56,24 @@ public class MovieBtController {
     @DeleteMapping(value = "deleteMovie")
     public Result deleteMovie(Integer id){
         movieBtService.deleteMovie(id);
+        return Result.success();
+    }
+
+    /**
+     * 根据点击次数列出电影信息，由大到小
+     */
+    @GetMapping(value = "listMovieByClickNumber")
+    public Result listMovieByClickNumber(){
+        List<MovieBt> countMovie = movieBtService.listMovieByClickNumber();
+        return Result.success(countMovie);
+    }
+
+    /**
+     * 访问该url后，数据库中的count_download次数+1
+     */
+    @GetMapping(value = "countNumberAddOne")
+    public Result countNumberAddOne(String btDownloadUrl){
+        movieBtService.countAddOne(btDownloadUrl);
         return Result.success();
     }
 }

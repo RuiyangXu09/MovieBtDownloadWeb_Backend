@@ -1,8 +1,9 @@
 package com.example.moviedownloadbtweb.domain;
-/**
- *电影信息实体类
- */
+
 import java.time.LocalDate;
+/**
+ * 电影信息实体类
+ */
 
 public class MovieBt {
     private Integer id;
@@ -12,11 +13,12 @@ public class MovieBt {
     private LocalDate updateTime;
     private String btDownloadUrl;
     private String subtitleDownloadUrl;
+    private Integer clickNumber;
 
     public MovieBt() {
     }
 
-    public MovieBt(Integer id, String movieName, Integer category, LocalDate createTime, LocalDate updateTime, String btDownloadUrl, String subtitleDownloadUrl) {
+    public MovieBt(Integer id, String movieName, Integer category, LocalDate createTime, LocalDate updateTime, String btDownloadUrl, String subtitleDownloadUrl, Integer clickNumber) {
         this.id = id;
         this.movieName = movieName;
         this.category = category;
@@ -24,6 +26,7 @@ public class MovieBt {
         this.updateTime = updateTime;
         this.btDownloadUrl = btDownloadUrl;
         this.subtitleDownloadUrl = subtitleDownloadUrl;
+        this.clickNumber = clickNumber;
     }
 
     public Integer getId() {
@@ -82,6 +85,14 @@ public class MovieBt {
         this.subtitleDownloadUrl = subtitleDownloadUrl;
     }
 
+    public Integer getClickNumber() {
+        return clickNumber;
+    }
+
+    public void setClickNumber(Integer clickNumber) {
+        this.clickNumber = clickNumber;
+    }
+
     @Override
     public String toString() {
         return "MovieBt{" +
@@ -92,6 +103,7 @@ public class MovieBt {
                 ", updateTime=" + updateTime +
                 ", btDownloadUrl='" + btDownloadUrl + '\'' +
                 ", subtitleDownloadUrl='" + subtitleDownloadUrl + '\'' +
+                ", clickNumber=" + clickNumber +
                 '}';
     }
 }

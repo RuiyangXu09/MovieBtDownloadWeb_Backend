@@ -31,4 +31,15 @@ public interface MovieBtService {
      * @param id
      */
     void deleteMovie(Integer id);
+
+    /**
+     * 根据点击次数列出电影信息，由大到小
+     * @return
+     */
+    List<MovieBt> listMovieByClickNumber();
+
+    /**
+     * 访问该url后，数据库中的count_download次数+1
+     */
+    void countAddOne(String btDownloadUrl);
 }
