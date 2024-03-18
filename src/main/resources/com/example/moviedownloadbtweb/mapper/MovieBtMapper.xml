@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.moviedownloadbtweb.mapper.MovieBtMapper">
+<!--    新增电影-->
+    <insert id="addMovie" parameterType="com.example.moviedownloadbtweb.domain.MovieBt">
+        INSERT INTO movie(movie_name, category, create_time, update_time, bt_download_url, subtitle_download_url, count_download)
+        VALUES (#{movieName}, #{category}, #{createTime}, #{updateTime}, #{btDownloadUrl}, #{subtitleDownloadUrl}, 1)
+    </insert>
+<!--    根据id修改电影信息-->
+    <update id="updateMovie" parameterType="com.example.moviedownloadbtweb.domain.MovieBt">
+        UPDATE movie
+        <set>
+            movie_name = #{movieName},
+            category = #{category},
+            update_time = #{updateTime},
+            bt_download_url = #{btDownloadUrl},
+            subtitle_download_url = #{subtitleDownloadUrl}
+        </set>
+        <where>
+            id = #{id}
+        </where>
+    </update>
+<!--    删除电影信息 by id-->
+    <delete id="deleteMovie" parameterType="com.example.moviedownloadbtweb.domain.MovieBt">
+        DELETE FROM movie
+        <where>
+            id = #{id}
+        </where>
+    </delete>
+<!--    根据点击次数列出电影信息，由大到小-->
+    <select id="listMovieByClickNumber" resultType="com.example.moviedownloadbtweb.domain.MovieBt">
+        SELECT id, movie_name, category, create_time, update_time, bt_download_url, subtitle_download_url
+        FROM movie
+        ORDER BY count_download
+        DESC
+    </select>
+<!--    访问该url后，数据库中的count_download次数+1-->
+    <update id="countAddOne" >
+        UPDATE movie
+        <set>
+            count_download = count_download + 1
+        </set>
+        WHERE bt_download_url = #{btDownloadUrl}
+    </update>
+<!--    查询数据库中，电影的总记录数-->
+    <select id="countMovie">
+        SELECT count(*)
+        FROM movie
+    </select>
+<!--    分页的sql，接收两个参数，一个起始索引，一个每页的数据列表返回数-->
+    <select id="pageMovie" parameterType="com.example.moviedownloadbtweb.domain.MovieBt">
+        SELECT id, movie_name, category, update_time, bt_download_url, subtitle_download_url, count_download
+        FROM movie
+        LIMIT #{indexStart}, #{pageSize}
+    </select>
+</mapper>
