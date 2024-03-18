@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.*;
 import java.util.List;
 
 /**
- * 电影管理的sql方法，映射文件名：MovieBtMapper.xml
+ * 电影管理的mapper接口，映射文件名：MovieBtMapper.xml
  */
 @Mapper
 public interface MovieBtMapper {

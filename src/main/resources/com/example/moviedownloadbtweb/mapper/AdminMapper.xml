@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.moviedownloadbtweb.mapper.AdminMapper">
+<!--    删除用户信息 by id-->
+    <delete id="deleteUser">
+        DELETE FROM user
+        WHERE id = #{id}
+    </delete>
+<!--    查询数据库中，用户的总记录数-->
+    <select id="countUser" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM user
+    </select>
+<!--    用户信息分页功能，接收两个参数，一个起始索引，一个每页的数据列表返回数-->
+    <select id="pageUserList" resultType="com.example.moviedownloadbtweb.domain.User">
+        SELECT id, username, avatar_url
+        FROM user
+        LIMIT #{indexStart}, #{pageSize}
+    </select>
+</mapper>

@@ -23,7 +23,7 @@
         </where>
     </update>
 <!--    删除电影信息 by id-->
-    <delete id="deleteMovie" parameterType="com.example.moviedownloadbtweb.domain.MovieBt">
+    <delete id="deleteMovie">
         DELETE FROM movie
         <where>
             id = #{id}
@@ -45,12 +45,12 @@
         WHERE bt_download_url = #{btDownloadUrl}
     </update>
 <!--    查询数据库中，电影的总记录数-->
-    <select id="countMovie">
+    <select id="countMovie" resultType="java.lang.Integer">
         SELECT count(*)
         FROM movie
     </select>
 <!--    分页的sql，接收两个参数，一个起始索引，一个每页的数据列表返回数-->
-    <select id="pageMovie" parameterType="com.example.moviedownloadbtweb.domain.MovieBt">
+    <select id="pageMovie" resultType="com.example.moviedownloadbtweb.domain.MovieBt">
         SELECT id, movie_name, category, update_time, bt_download_url, subtitle_download_url, count_download
         FROM movie
         LIMIT #{indexStart}, #{pageSize}

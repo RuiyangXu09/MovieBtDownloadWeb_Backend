@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Select;
 import java.util.List;
 
 /**
- * 管理员管理
+ * 管理员管理的mapper接口，映射文件名：AdminMapper.xml
  */
 @Mapper
 public interface AdminMapper {
@@ -16,22 +16,20 @@ public interface AdminMapper {
      * 删除用户信息 by id的sql
      * @param id
      */
-    @Delete("DELETE FROM user WHERE id = #{id}")
     void deleteUser(Integer id);
 
     /**
      *查询数据库中，用户的总记录数
      * @return
      */
-    @Select("SELECT count(*) FROM user")
+    //@Select("SELECT count(*) FROM user")
     Integer countUser();
 
     /**
-     *分页功能，接收两个参数，一个起始索引，一个每页的数据列表返回数
+     *用户信息分页功能，接收两个参数，一个起始索引，一个每页的数据列表返回数
      * @param indexStart
      * @param pageSize
      * @return
      */
-    @Select("SELECT id, username, avatar_url FROM user LIMIT #{indexStart}, #{pageSize}")
     List<User> pageUserList(Integer indexStart, Integer pageSize);
 }
