@@ -1,10 +1,10 @@
 package com.example.moviedownloadbtweb.controller;
 
 import com.example.moviedownloadbtweb.domain.MovieBt;
+import com.example.moviedownloadbtweb.domain.PageBean;
 import com.example.moviedownloadbtweb.service.MovieBtService;
 import com.example.moviedownloadbtweb.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -42,15 +42,6 @@ public class MovieBtController {
     }
 
     /**
-     * 列出电影信息
-     */
-    @GetMapping(value = "listMovie")
-    public Result listMovie(){
-        List<MovieBt> movieBtList = movieBtService.listMovie();
-        return Result.success(movieBtList);
-    }
-
-    /**
      * 删除电影信息
      */
     @DeleteMapping(value = "deleteMovie")
@@ -75,5 +66,18 @@ public class MovieBtController {
     public Result countNumberAddOne(String btDownloadUrl){
         movieBtService.countAddOne(btDownloadUrl);
         return Result.success();
+    }
+
+    /**
+     * 分页查询电影信息，如果前端未传递page参数，则默认值设为 1，如果前端为传递pageSize参数，则默认值设为 6
+     * 使用注解@RequestParam设定默认page参数和pageSize参数
+     */
+    @GetMapping("pageMovieList")
+    public Result pageMovieList(@RequestParam(defaultValue = "1") Integer page,
+                                @RequestParam(defaultValue = "6") Integer pageSize){
+        //使用pageBean封装获取的总记录数count和返回的限定条数的数据列表，pageMovie接收前端传递的两个参数page和pageSize
+        PageBean pageBean = movieBtService.pageMovieList(page, pageSize);
+        //将对象pageBean封装到Result中响应给前端即可
+        return Result.success(pageBean);
     }
 }

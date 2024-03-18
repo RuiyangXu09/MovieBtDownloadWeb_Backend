@@ -27,13 +27,6 @@ public interface MovieBtMapper {
     void updateMovie(MovieBt movieBt);
 
     /**
-     * 查询电影信息的sql
-     * @return
-     */
-    @Select("SELECT id, movie_name, category, create_time, update_time, bt_download_url, subtitle_download_url, count_download FROM movie")
-    List<MovieBt> listMovie();
-
-    /**
      * 删除电影信息的sql，by id
      * @param id
      */
@@ -44,7 +37,7 @@ public interface MovieBtMapper {
      * 根据点击次数列出电影信息，由大到小的sql
      * @return
      */
-    @Select("SELECT id, movie_name, category, create_time, update_time, bt_download_url, subtitle_download_url FROM movie ORDER BY count_download DESC ")
+    @Select("SELECT id, movie_name, category, create_time, update_time, bt_download_url, subtitle_download_url FROM movie ORDER BY count_download DESC")
     List<MovieBt> listMovieByClickNumber();
 
     /**
@@ -55,4 +48,19 @@ public interface MovieBtMapper {
      */
     @Update("UPDATE movie SET count_download = count_download + 1 WHERE bt_download_url = #{btDownloadUrl}")
     void countAddOne(String btDownloadUrl);
+
+    /**
+     * 查询数据库中，电影的总记录数
+     */
+    @Select("SELECT count(*) FROM movie")
+    Integer countMovie();
+
+    /**
+     * 分页的sql，接收两个参数，一个起始索引，一个每页的数据列表返回数
+     * @param indexStart
+     * @param pageSize
+     * @return
+     */
+    @Select("SELECT id, movie_name, category, update_time, bt_download_url, subtitle_download_url, count_download FROM movie LIMIT #{indexStart}, #{pageSize}")
+    List<MovieBt> pageMovie(Integer indexStart, Integer pageSize);
 }

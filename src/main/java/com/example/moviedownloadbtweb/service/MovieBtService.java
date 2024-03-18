@@ -1,6 +1,7 @@
 package com.example.moviedownloadbtweb.service;
 
 import com.example.moviedownloadbtweb.domain.MovieBt;
+import com.example.moviedownloadbtweb.domain.PageBean;
 
 import java.util.List;
 
@@ -21,12 +22,6 @@ public interface MovieBtService {
     void updateMovie(MovieBt movieBt);
 
     /**
-     * 查询电影信息
-     * @return
-     */
-    List<MovieBt> listMovie();
-
-    /**
      * 删除电影信息
      * @param id
      */
@@ -42,4 +37,12 @@ public interface MovieBtService {
      * 访问该url后，数据库中的count_download次数+1
      */
     void countAddOne(String btDownloadUrl);
+
+    /**
+     * 分页查询电影信息的功能
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    PageBean pageMovieList(Integer page, Integer pageSize);
 }

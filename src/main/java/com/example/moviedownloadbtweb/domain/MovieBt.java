@@ -13,12 +13,12 @@ public class MovieBt {
     private LocalDate updateTime;
     private String btDownloadUrl;
     private String subtitleDownloadUrl;
-    private Integer clickNumber;
+    private Integer countDownload;
 
     public MovieBt() {
     }
 
-    public MovieBt(Integer id, String movieName, Integer category, LocalDate createTime, LocalDate updateTime, String btDownloadUrl, String subtitleDownloadUrl, Integer clickNumber) {
+    public MovieBt(Integer id, String movieName, Integer category, LocalDate createTime, LocalDate updateTime, String btDownloadUrl, String subtitleDownloadUrl, Integer countDownload) {
         this.id = id;
         this.movieName = movieName;
         this.category = category;
@@ -26,7 +26,7 @@ public class MovieBt {
         this.updateTime = updateTime;
         this.btDownloadUrl = btDownloadUrl;
         this.subtitleDownloadUrl = subtitleDownloadUrl;
-        this.clickNumber = clickNumber;
+        this.countDownload = countDownload;
     }
 
     public Integer getId() {
@@ -85,12 +85,12 @@ public class MovieBt {
         this.subtitleDownloadUrl = subtitleDownloadUrl;
     }
 
-    public Integer getClickNumber() {
-        return clickNumber;
+    public Integer getCountDownload() {
+        return countDownload;
     }
 
-    public void setClickNumber(Integer clickNumber) {
-        this.clickNumber = clickNumber;
+    public void setCountDownload(Integer countDownload) {
+        this.countDownload = countDownload;
     }
 
     @Override
@@ -103,7 +103,7 @@ public class MovieBt {
                 ", updateTime=" + updateTime +
                 ", btDownloadUrl='" + btDownloadUrl + '\'' +
                 ", subtitleDownloadUrl='" + subtitleDownloadUrl + '\'' +
-                ", clickNumber=" + clickNumber +
+                ", countDownload=" + countDownload +
                 '}';
     }
 }

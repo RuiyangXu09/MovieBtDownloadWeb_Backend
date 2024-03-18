@@ -1,6 +1,7 @@
 package com.example.moviedownloadbtweb.service.Impl;
 
 import com.example.moviedownloadbtweb.domain.MovieBt;
+import com.example.moviedownloadbtweb.domain.PageBean;
 import com.example.moviedownloadbtweb.mapper.MovieBtMapper;
 import com.example.moviedownloadbtweb.service.MovieBtService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,15 +42,6 @@ public class MovieBtServiceImpl implements MovieBtService {
     }
 
     /**
-     * 查询电影信息，重写service接口中的方法，调用mapper接口中对应的select方法
-     * @return
-     */
-    @Override
-    public List<MovieBt> listMovie() {
-        return movieBtMapper.listMovie();
-    }
-
-    /**
      * 删除电影信息，重写service接口中的方法，调用mapper接口中对应的delete方法
      * @param id
      */
@@ -76,5 +68,22 @@ public class MovieBtServiceImpl implements MovieBtService {
     @Transactional
     public void countAddOne(String btDownloadUrl) {
         movieBtMapper.countAddOne(btDownloadUrl);
+    }
+
+    /**
+     * 分页查询电影信息，重写service接口中的方法，调用mapper接口中对应的select方法和count方法，返回一个总记录数和一些数据列表，数据列表存入数组并封装到一个对象pageBean中
+     * @param page
+     * @param pageSize
+     * @return
+     */
+    @Override
+    public PageBean pageMovieList(Integer page, Integer pageSize) {
+        //获取总记录数
+        Integer count = movieBtMapper.countMovie();
+        //indexStart为起始索引，计算起始索引的公式为（页码-1）*每页显示数，返回得到的数据列表存入数组中
+        Integer indexStart = (page - 1) * pageSize;
+        List<MovieBt> pageMovieList = movieBtMapper.pageMovie(indexStart, pageSize);
+        //new一个pageBean对象来封装获取到的总记录数和返回的数据列表，对象中有两个参数，一个count接收总记录数，一个list接收数据列表
+        return new PageBean(count, pageMovieList);
     }
 }
