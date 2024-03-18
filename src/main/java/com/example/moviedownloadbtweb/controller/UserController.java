@@ -22,7 +22,7 @@ public class UserController {
      * @return
      */
     @PostMapping(value = "registerUser")
-    public Result registerUser(User user){
+    public Result registerUser(@RequestBody User user){
         //调用service完成用户的注册
         userService.registerUser(user);
         return Result.success();
