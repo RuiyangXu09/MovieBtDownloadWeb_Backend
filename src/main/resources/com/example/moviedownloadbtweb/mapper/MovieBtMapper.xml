@@ -12,11 +12,21 @@
     <update id="updateMovie" parameterType="com.example.moviedownloadbtweb.domain.MovieBt">
         UPDATE movie
         <set>
-            movie_name = #{movieName},
-            category = #{category},
-            update_time = #{updateTime},
-            bt_download_url = #{btDownloadUrl},
-            subtitle_download_url = #{subtitleDownloadUrl}
+            <if test="movieName != null and movieName != ''">
+                movie_name = #{movieName},
+            </if>
+            <if test="category != null">
+                category = #{category},
+            </if>
+            <if test="updateTime != null">
+                update_time = #{updateTime},
+            </if>
+            <if test="btDownloadUrl != null and btDownloadUrl != ''">
+                bt_download_url = #{btDownloadUrl},
+            </if>
+            <if test="subtitleDownloadUrl != null and subtitleDownloadUrl != ''">
+                subtitle_download_url = #{subtitleDownloadUrl}
+            </if>
         </set>
         <where>
             id = #{id}
