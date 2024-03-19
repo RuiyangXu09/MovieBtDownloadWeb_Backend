@@ -1,12 +1,16 @@
 package com.example.moviedownloadbtweb.controller;
 
+import com.aliyuncs.exceptions.ClientException;
 import com.example.moviedownloadbtweb.domain.MovieBt;
 import com.example.moviedownloadbtweb.domain.PageBean;
 import com.example.moviedownloadbtweb.service.MovieBtService;
+import com.example.moviedownloadbtweb.utils.AliyunOss;
 import com.example.moviedownloadbtweb.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -18,6 +22,9 @@ public class MovieBtController {
     //注入对应的service层
     @Autowired
     MovieBtService movieBtService;
+
+    @Autowired
+    AliyunOss aliyunOss;
 
     /**
      * 新增电影bt信息
@@ -79,5 +86,33 @@ public class MovieBtController {
         PageBean pageBean = movieBtService.pageMovieList(page, pageSize);
         //将对象pageBean封装到Result中响应给前端即可
         return Result.success(pageBean);
+    }
+
+    /**
+     * 用户上传头像，文件上传到oss中后，获取url，传递到前端表单中，前端表单一起将参数传入对应接口放入数据库中
+     * @param btDownloadUrl
+     * @return
+     * @throws IOException
+     * @throws ClientException
+     */
+    @PostMapping(value = "uploadMovie")
+    public Result uploadMovie(@RequestBody MultipartFile btDownloadUrl) throws IOException, ClientException {
+        String url = aliyunOss.uploadMovieBt(btDownloadUrl);
+
+        return Result.success(url);
+    }
+
+    /**
+     * 用户上传头像，文件上传到oss中后，获取url，传递到前端表单中，前端表单一起将参数传入对应接口放入数据库中
+     * @param subtitleDownloadUrl
+     * @return
+     * @throws IOException
+     * @throws ClientException
+     */
+    @PostMapping(value = "uploadSubTitle")
+    public Result uploadSubTitle(@RequestBody MultipartFile subtitleDownloadUrl) throws IOException, ClientException {
+        String url = aliyunOss.uploadSubTitle(subtitleDownloadUrl);
+
+        return Result.success(url);
     }
 }
