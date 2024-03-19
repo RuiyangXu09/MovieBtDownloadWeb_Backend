@@ -89,7 +89,7 @@ public class MovieBtController {
     }
 
     /**
-     * 用户上传头像，文件上传到oss中后，获取url，传递到前端表单中，前端表单一起将参数传入对应接口放入数据库中
+     * 上传电影，文件上传到oss中后，获取url，传递到前端表单中，前端表单一起将参数传入对应接口放入数据库中
      * @param btDownloadUrl
      * @return
      * @throws IOException
@@ -103,7 +103,7 @@ public class MovieBtController {
     }
 
     /**
-     * 用户上传头像，文件上传到oss中后，获取url，传递到前端表单中，前端表单一起将参数传入对应接口放入数据库中
+     * 上传字幕，文件上传到oss中后，获取url，传递到前端表单中，前端表单一起将参数传入对应接口放入数据库中
      * @param subtitleDownloadUrl
      * @return
      * @throws IOException
@@ -114,5 +114,17 @@ public class MovieBtController {
         String url = aliyunOss.uploadSubTitle(subtitleDownloadUrl);
 
         return Result.success(url);
+    }
+
+    /**
+     * 根据id查电影信息
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "getMovieById")
+    public Result getMovieById(Integer id){
+        MovieBt movieBt = movieBtService.getMovieById(id);
+        //返回前端一个MovieBt对象，封装在result中
+        return Result.success(movieBt);
     }
 }

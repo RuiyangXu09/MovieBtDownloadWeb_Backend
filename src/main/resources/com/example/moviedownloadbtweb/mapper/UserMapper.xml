@@ -16,4 +16,10 @@
         </set>
         WHERE id = #{id}
     </update>
+
+    <select id="getUserById" resultType="com.example.moviedownloadbtweb.domain.User">
+        SELECT *
+        FROM user
+        WHERE id = #{id}
+    </select>
 </mapper>

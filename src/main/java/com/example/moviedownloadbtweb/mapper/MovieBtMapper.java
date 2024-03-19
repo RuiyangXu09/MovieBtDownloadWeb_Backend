@@ -55,4 +55,11 @@ public interface MovieBtMapper {
      * @return
      */
     List<MovieBt> pageMovie(Integer indexStart, Integer pageSize);
+
+    /**
+     * 根据id查电影信息
+     * @param id
+     * @return
+     */
+    MovieBt getMovieById(Integer id);
 }

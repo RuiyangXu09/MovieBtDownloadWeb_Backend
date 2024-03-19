@@ -86,4 +86,14 @@ public class MovieBtServiceImpl implements MovieBtService {
         //new一个pageBean对象来封装获取到的总记录数和返回的数据列表，对象中有两个参数，一个count接收总记录数，一个list接收数据列表
         return new PageBean(count, pageMovieList);
     }
+
+    /**
+     * 根据id查电影信息
+     * @param id
+     * @return
+     */
+    @Override
+    public MovieBt getMovieById(Integer id) {
+        return movieBtMapper.getMovieById(id);
+    }
 }

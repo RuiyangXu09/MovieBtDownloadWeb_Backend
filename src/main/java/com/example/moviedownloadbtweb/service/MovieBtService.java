@@ -45,4 +45,11 @@ public interface MovieBtService {
      * @return
      */
     PageBean pageMovieList(Integer page, Integer pageSize);
+
+    /**
+     *根据id查电影信息
+     * @param id
+     * @return
+     */
+    MovieBt getMovieById(Integer id);
 }

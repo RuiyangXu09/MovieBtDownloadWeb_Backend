@@ -1,5 +1,6 @@
 package com.example.moviedownloadbtweb.controller;
 
+import com.example.moviedownloadbtweb.domain.Admin;
 import com.example.moviedownloadbtweb.domain.PageBean;
 import com.example.moviedownloadbtweb.domain.User;
 import com.example.moviedownloadbtweb.service.AdminService;
@@ -38,5 +39,17 @@ public class AdminController {
         PageBean pageBean = adminService.pageUserList(page, pageSize);
 
         return Result.success(pageBean);
+    }
+
+    /**
+     * 根据id查询用户信息
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "getAdminById")
+    public Result getAdminById(Integer id){
+        Admin admin = adminService.getAdminById(id);
+        //返回前端一个admin对象，封装在result中
+        return Result.success(admin);
     }
 }

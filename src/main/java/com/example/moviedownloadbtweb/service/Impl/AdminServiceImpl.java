@@ -1,5 +1,6 @@
 package com.example.moviedownloadbtweb.service.Impl;
 
+import com.example.moviedownloadbtweb.domain.Admin;
 import com.example.moviedownloadbtweb.domain.PageBean;
 import com.example.moviedownloadbtweb.domain.User;
 import com.example.moviedownloadbtweb.mapper.AdminMapper;
@@ -43,5 +44,15 @@ public class AdminServiceImpl implements AdminService {
         List<User> pageUserList = adminMapper.pageUserList(indexStart, pageSize);
         //new一个pageBean对象来封装获取到的总记录数和返回的数据列表，对象中有两个参数，一个count接收总记录数，一个list接收数据列表
         return new PageBean(count, pageUserList);
+    }
+
+    /**
+     * 根据id查询用户信息
+     * @param id
+     * @return
+     */
+    @Override
+    public Admin getAdminById(Integer id) {
+        return adminMapper.getAdminById(id);
     }
 }

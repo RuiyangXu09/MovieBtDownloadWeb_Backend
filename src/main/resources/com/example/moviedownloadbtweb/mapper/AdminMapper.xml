@@ -19,4 +19,10 @@
         FROM user
         LIMIT #{indexStart}, #{pageSize}
     </select>
+<!--    根据id查询用户信息-->
+    <select id="getAdminById" resultType="com.example.moviedownloadbtweb.domain.Admin">
+        SELECT *
+        FROM admin
+        WHERE id = #{id}
+    </select>
 </mapper>

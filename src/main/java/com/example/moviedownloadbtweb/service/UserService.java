@@ -15,4 +15,11 @@ public interface UserService {
      * 修改用户信息
      */
     void updateUser(User user);
+
+    /**
+     *根据id查询用户信息
+     * @param id
+     * @return
+     */
+    User getUserById(Integer id);
 }

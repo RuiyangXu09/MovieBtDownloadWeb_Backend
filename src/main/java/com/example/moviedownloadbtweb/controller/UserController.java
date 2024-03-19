@@ -61,4 +61,16 @@ public class UserController {
 
         return Result.success(url);
     }
+
+    /**
+     * 根据id查询用户信息
+     * @param id
+     * @return
+     */
+    @GetMapping(value = "getUserById")
+    public Result getUserById(Integer id){
+        User user = userService.getUserById(id);
+        //返回前端一个user对象，封装在result中
+        return Result.success(user);
+    }
 }
