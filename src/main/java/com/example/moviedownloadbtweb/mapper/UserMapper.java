@@ -1,9 +1,7 @@
 package com.example.moviedownloadbtweb.mapper;
 
 import com.example.moviedownloadbtweb.domain.User;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Update;
 
 /**
  * 用户的管理的mapper接口，映射文件名：UserMapper.xml

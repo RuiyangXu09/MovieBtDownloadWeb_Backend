@@ -16,7 +16,9 @@ import java.util.List;
  */
 @Service
 public class MovieBtServiceImpl implements MovieBtService {
-    //注入对应的mapper接口
+    /**
+     * 注入对应的mapper接口
+     */
     @Autowired
     MovieBtMapper movieBtMapper;
 
@@ -63,6 +65,7 @@ public class MovieBtServiceImpl implements MovieBtService {
      * 访问该url后，数据库中的count_download次数+1
      * 同时添加注解@Transactional来启用事务管理，该注解确保操作的原子性
      * 当多个线程同时尝试更新同一个URL的点击次数时，Spring的事务管理器会确保每次只有一个线程能够成功更新数据，从而避免了数据不一致的问题
+     * @param btDownloadUrl
      */
     @Override
     @Transactional

@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class UserServiceImpl implements UserService {
-    //注入对应的mapper层接口来完成用户注册
+    /**
+     * 注入对应的mapper层接口来完成用户注册
+     */
     @Autowired
     private UserMapper userMapper;
 

@@ -17,7 +17,9 @@ import java.io.IOException;
 @RestController
 @RequestMapping(value = "/api/v1/user")
 public class UserController {
-    //注入user的service层
+    /**
+     * 注入user的service层
+     */
     @Autowired
     UserService userService;
 

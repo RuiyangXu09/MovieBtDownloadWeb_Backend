@@ -8,11 +8,13 @@ import com.example.moviedownloadbtweb.domain.User;
 public interface UserService {
     /**
      * 用户注册
+     * @param user
      */
     void registerUser(User user);
 
     /**
      * 修改用户信息
+     * @param user
      */
     void updateUser(User user);
 

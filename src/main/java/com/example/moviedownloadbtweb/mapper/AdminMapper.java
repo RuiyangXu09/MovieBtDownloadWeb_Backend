@@ -2,9 +2,7 @@ package com.example.moviedownloadbtweb.mapper;
 
 import com.example.moviedownloadbtweb.domain.Admin;
 import com.example.moviedownloadbtweb.domain.User;
-import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
 
 import java.util.List;
 
@@ -23,7 +21,6 @@ public interface AdminMapper {
      *查询数据库中，用户的总记录数
      * @return
      */
-    //@Select("SELECT count(*) FROM user")
     Integer countUser();
 
     /**

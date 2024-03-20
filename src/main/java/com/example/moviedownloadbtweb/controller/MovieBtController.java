@@ -19,7 +19,9 @@ import java.util.List;
 @RestController
     @RequestMapping(value = "/api/v1/movie")
 public class MovieBtController {
-    //注入对应的service层
+    /**
+     *注入对应的service层
+     */
     @Autowired
     MovieBtService movieBtService;
 

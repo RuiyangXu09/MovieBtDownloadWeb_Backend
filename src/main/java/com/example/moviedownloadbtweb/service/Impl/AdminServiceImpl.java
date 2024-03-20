@@ -4,7 +4,6 @@ import com.example.moviedownloadbtweb.domain.Admin;
 import com.example.moviedownloadbtweb.domain.PageBean;
 import com.example.moviedownloadbtweb.domain.User;
 import com.example.moviedownloadbtweb.mapper.AdminMapper;
-import com.example.moviedownloadbtweb.mapper.UserMapper;
 import com.example.moviedownloadbtweb.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,9 @@ import java.util.List;
  */
 @Service
 public class AdminServiceImpl implements AdminService {
-    //注入对应的mapper层接口中的方法来操作数据库
+    /**
+     * 注入对应的mapper层接口中的方法来操作数据库
+     */
     @Autowired
     private AdminMapper adminMapper;
     /**

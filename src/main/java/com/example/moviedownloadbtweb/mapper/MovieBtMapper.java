@@ -26,7 +26,6 @@ public interface MovieBtMapper {
      * 删除电影信息的sql，by id
      * @param id
      */
-//    @Delete("DELETE FROM movie WHERE id = #{id}")
     void deleteMovie(Integer id);
 
     /**
@@ -40,11 +39,13 @@ public interface MovieBtMapper {
      * 在数据库中维护点击次数，并在每次请求时直接更新数据库。利用数据库的事务管理、并发控制和持久化特性来确保数据的准确性和一致性
      * 利用了数据库的事务性和原子性来确保每次点击都被正确记录，并且即使在并发环境下也能保持数据的一致性
      * 同时，数据也被持久化保存在数据库中，不会因为服务重启而丢失
+     * @param btDownloadUrl
      */
     void countAddOne(String btDownloadUrl);
 
     /**
      * 查询数据库中，电影的总记录数的sql
+     * @return
      */
     Integer countMovie();
 

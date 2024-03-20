@@ -17,9 +17,13 @@ import java.util.UUID;
  */
 @Component
 public class AliyunOss {
-    // Endpoint的url
+    /**
+     * Endpoint的url
+     */
     private String endpoint = "https://oss-cn-chengdu.aliyuncs.com";
-    // 填写Bucket名称
+    /**
+     * 填写Bucket名称
+     */
     private String bucketName = "moviebt";
 
     //上传头像
