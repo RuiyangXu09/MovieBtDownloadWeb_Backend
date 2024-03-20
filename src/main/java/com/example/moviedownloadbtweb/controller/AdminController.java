@@ -61,30 +61,4 @@ public class AdminController {
         //返回前端一个admin对象，封装在result中
         return Result.success(admin);
     }
-
-    /**
-     * 管理员登录，不推荐名称和密码的分开验证，有暴力破解的危险性
-     * @param admin
-     * @return
-     */
-    @PostMapping(value = "adminLogin")
-    public Result adminLogin(@RequestBody Admin admin){
-        //需要存储传递返回值，类型为Admin对象
-        Admin a = adminService.adminLogin(admin);
-        //登录成功，生成jwt令牌
-        if(a != null){
-            //创建一个map对象claims，用于存储登录信息
-            Map<String, Object> claims = new HashMap<>();
-            //添加需要存储的信息
-            claims.put("id", admin.getId());
-            claims.put("admin_name", admin.getAdminName());
-            claims.put("admin_password", admin.getAdminPassword());
-            //生成token，包含claims内容，也就是管理员登录的必要信息
-            String token = jwt.generateJwt(claims);
-            //将token值返回到前端
-            return Result.success(token);
-        }else {
-            return Result.error("Admin name or Password is not correct.");
-        }
-    }
 }
