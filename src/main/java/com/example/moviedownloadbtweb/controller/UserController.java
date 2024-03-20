@@ -4,12 +4,15 @@ import com.aliyuncs.exceptions.ClientException;
 import com.example.moviedownloadbtweb.domain.User;
 import com.example.moviedownloadbtweb.service.UserService;
 import com.example.moviedownloadbtweb.utils.AliyunOss;
+import com.example.moviedownloadbtweb.utils.Jwt;
 import com.example.moviedownloadbtweb.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 用户controller
@@ -22,8 +25,14 @@ public class UserController {
      */
     @Autowired
     UserService userService;
-
-    //注入阿里云oss
+    /**
+     * 注入jwt令牌
+     */
+    @Autowired
+    Jwt jwt;
+    /**
+     * 注入阿里云oss
+     */
     @Autowired
     AliyunOss aliyunOss;
 
@@ -74,5 +83,26 @@ public class UserController {
         User user = userService.getUserById(id);
         //返回前端一个user对象，封装在result中
         return Result.success(user);
+    }
+
+    /**
+     * 用户登录
+     * @param user
+     * @return
+     */
+    @PostMapping(value = "userLogin")
+    public Result userLogin(@RequestBody User user){
+        User u = userService.userLogin(user);
+        if (u != null){
+            Map<String, Object> claims = new HashMap<>();
+            claims.put("id", user.getId());
+            claims.put("username", user.getUsername());
+            claims.put("password", user.getPassword());
+            claims.put("avatar_url", user.getAvatarUrl());
+            String token = jwt.generateJwt(claims);
+            return Result.success(token);
+        }else {
+            return Result.error("Username or Password is not correct");
+        }
     }
 }

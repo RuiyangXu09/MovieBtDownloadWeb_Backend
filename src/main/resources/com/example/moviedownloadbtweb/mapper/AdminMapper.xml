@@ -25,4 +25,14 @@
         FROM admin
         WHERE id = #{id}
     </select>
+<!--    管理员登录-->
+    <select id="adminLogin" resultType="com.example.moviedownloadbtweb.domain.Admin">
+        SELECT *
+        FROM admin
+        <where>
+            admin_name = #{adminName}
+            AND
+            admin_password = #{adminPassword}
+        </where>
+    </select>
 </mapper>

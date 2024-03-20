@@ -24,7 +24,9 @@ public class MovieBtController {
      */
     @Autowired
     MovieBtService movieBtService;
-
+    /**
+     * 注入阿里云oss
+     */
     @Autowired
     AliyunOss aliyunOss;
 

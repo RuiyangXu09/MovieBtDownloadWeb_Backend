@@ -3,6 +3,7 @@ package com.example.moviedownloadbtweb.utils;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.stereotype.Component;
 
 import java.util.Date;
 import java.util.Map;
@@ -10,19 +11,20 @@ import java.util.Map;
 /**
  * 生成和解析jwt
  */
+@Component
 public class Jwt {
     /**
      * 设置JWT的key值和过期时间
      */
-    private static String key = "movieDownload";
-    private static Long expire = 604800000L;
+    private String key = "movieDownload";
+    private Long expire = 604800000L;
 
     /**
      * 生成jwt令牌
      * @param claims jwt的第二部分payload中存储的内容，以键值对形式存储
      * @return
      */
-    public static String generateJwt(Map<String, Object> claims){
+    public String generateJwt(Map<String, Object> claims){
         String jwt = Jwts.builder()
                 //添加payload，也就是携带的数据内容
                 .addClaims(claims)
@@ -41,7 +43,7 @@ public class Jwt {
      * @param jwt jwt令牌
      * @return claims中携带的数据内容
      */
-    public static Claims parseJwt(String jwt){
+    public Claims parseJwt(String jwt){
         Claims claims = Jwts.parser()
                 //设置密钥
                 .setSigningKey(key)

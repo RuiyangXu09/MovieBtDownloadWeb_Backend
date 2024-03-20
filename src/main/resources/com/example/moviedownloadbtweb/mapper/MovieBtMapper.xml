@@ -65,7 +65,7 @@
         FROM movie
         LIMIT #{indexStart}, #{pageSize}
     </select>
-
+<!--    根据id查电影信息-->
     <select id="getMovieById" resultType="com.example.moviedownloadbtweb.domain.MovieBt">
         SELECT *
         FROM movie

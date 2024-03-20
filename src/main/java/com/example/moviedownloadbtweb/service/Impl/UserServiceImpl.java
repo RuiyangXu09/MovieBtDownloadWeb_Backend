@@ -44,4 +44,14 @@ public class UserServiceImpl implements UserService {
     public User getUserById(Integer id) {
         return userMapper.getUserById(id);
     }
+
+    /**
+     * 用户登录
+     * @param user
+     * @return
+     */
+    @Override
+    public User userLogin(User user) {
+        return userMapper.userLogin(user);
+    }
 }

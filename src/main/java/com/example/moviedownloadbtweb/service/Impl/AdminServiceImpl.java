@@ -56,4 +56,14 @@ public class AdminServiceImpl implements AdminService {
     public Admin getAdminById(Integer id) {
         return adminMapper.getAdminById(id);
     }
+
+    /**
+     * 管理员登录
+     * @param admin
+     * @return
+     */
+    @Override
+    public Admin adminLogin(Admin admin) {
+        return adminMapper.adminLogin(admin);
+    }
 }

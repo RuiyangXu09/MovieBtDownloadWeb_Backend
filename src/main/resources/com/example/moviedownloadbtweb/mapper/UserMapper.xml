@@ -26,10 +26,20 @@
             id = #{id}
         </where>
     </update>
-
+<!--    根据id查询用户信息-->
     <select id="getUserById" resultType="com.example.moviedownloadbtweb.domain.User">
         SELECT *
         FROM user
         WHERE id = #{id}
+    </select>
+<!--    用户登录-->
+    <select id="userLogin" resultType="com.example.moviedownloadbtweb.domain.User">
+        SELECT *
+        FROM user
+        <where>
+            username = #{username}
+            AND
+            password = #{password}
+        </where>
     </select>
 </mapper>
