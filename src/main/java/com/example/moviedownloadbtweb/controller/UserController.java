@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * 用户controller
@@ -43,9 +41,14 @@ public class UserController {
      */
     @PostMapping(value = "registerUser")
     public Result registerUser(@RequestBody User user){
-        //调用service完成用户的注册
-        userService.registerUser(user);
-        return Result.success();
+        //检查username是否重复，重复返回一个info
+        if (userService.checkDuplicateUsername(user)){
+            return Result.error("Username duplicated.");
+        }else {
+            //调用service完成用户的注册
+            userService.registerUser(user);
+            return Result.success();
+        }
     }
 
     /**

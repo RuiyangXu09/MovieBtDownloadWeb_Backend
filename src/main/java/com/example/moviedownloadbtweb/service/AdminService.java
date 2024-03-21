@@ -2,9 +2,7 @@ package com.example.moviedownloadbtweb.service;
 
 import com.example.moviedownloadbtweb.domain.Admin;
 import com.example.moviedownloadbtweb.domain.PageBean;
-import com.example.moviedownloadbtweb.domain.User;
 
-import java.util.List;
 /**
  * 管理员的各项功能
  */

@@ -12,9 +12,6 @@
     <update id="updateUser">
         UPDATE user
         <set>
-            <if test="username != null and username !=''">
-                username = #{username},
-            </if>
             <if test="password != null and password !=''">
                 password = #{password},
             </if>
@@ -41,5 +38,9 @@
             AND
             password = #{password}
         </where>
+    </select>
+<!--    检查username是否重复-->
+    <select id="checkDuplicateUsername" resultType="java.lang.Boolean">
+        SELECT EXISTS(SELECT 1 FROM user WHERE username = #{username})
     </select>
 </mapper>

@@ -3,6 +3,7 @@ package com.example.moviedownloadbtweb.service.Impl;
 import com.example.moviedownloadbtweb.domain.User;
 import com.example.moviedownloadbtweb.mapper.UserMapper;
 import com.example.moviedownloadbtweb.service.UserService;
+import com.example.moviedownloadbtweb.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,5 +44,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUserById(Integer id) {
         return userMapper.getUserById(id);
+    }
+
+    /**
+     * 检查username是否重复
+     * @param user
+     * @return
+     */
+    @Override
+    public boolean checkDuplicateUsername(User user) {
+        return userMapper.checkDuplicateUsername(user);
     }
 }

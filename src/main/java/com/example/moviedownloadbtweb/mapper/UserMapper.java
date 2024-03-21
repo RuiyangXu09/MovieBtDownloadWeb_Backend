@@ -26,4 +26,11 @@ public interface UserMapper {
      * @return
      */
     User getUserById(Integer id);
+
+    /**
+     * 检查username是否重复
+     * @param user
+     * @return
+     */
+    boolean checkDuplicateUsername(User user);
 }

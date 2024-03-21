@@ -24,4 +24,12 @@ public interface UserService {
      * @return
      */
     User getUserById(Integer id);
+
+    /**
+     * 检查username是否重复
+     * checkDuplicateUsername
+     * @param user
+     * @return
+     */
+    boolean checkDuplicateUsername(User user);
 }

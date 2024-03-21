@@ -3,10 +3,8 @@ package com.example.moviedownloadbtweb.filter;
 import com.alibaba.fastjson.JSONObject;
 import com.example.moviedownloadbtweb.utils.Jwt;
 import com.example.moviedownloadbtweb.utils.Result;
-import com.google.gson.JsonObject;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +15,7 @@ import java.io.IOException;
 /**
  * 过滤器拦截请求
  */
-@WebFilter(urlPatterns = "/*")
+//@WebFilter(urlPatterns = "/*")
 public class LoginCheckFilter implements Filter {
     @Autowired
     Jwt jwt;
@@ -58,9 +56,9 @@ public class LoginCheckFilter implements Filter {
             //没有值，返回错误信息
             Result errorInfo = Result.error("Please Login.");
             //需要手动将result对象转换为json格式响应回前端，fastjson的方法toJSONString会将对象转换为字符串类型的json数据
-            String notLogin = JSONObject.toJSONString(errorInfo);
+            String notLoginMsg = JSONObject.toJSONString(errorInfo);
             //通过响应resp中的write方法响应给前端
-            resp.getWriter().write(notLogin);
+            resp.getWriter().write(notLoginMsg);
             return;
         }
         //解析token，解析失败，返回错误信息

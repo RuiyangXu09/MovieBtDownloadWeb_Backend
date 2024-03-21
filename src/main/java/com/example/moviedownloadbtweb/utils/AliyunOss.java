@@ -26,7 +26,13 @@ public class AliyunOss {
      */
     private String bucketName = "moviebt";
 
-    //上传头像
+    /**
+     * 上传头像
+     * @param file
+     * @return
+     * @throws IOException
+     * @throws ClientException
+     */
     public String uploadAvatar(MultipartFile file) throws IOException, ClientException {
         // 从环境变量中获取访问凭证。运行本代码示例之前，请确保已设置环境变量OSS_ACCESS_KEY_ID和OSS_ACCESS_KEY_SECRET。
         //需要配置环境变量，配置文档url：https://help.aliyun.com/zh/oss/developer-reference/oss-java-configure-access-credentials?spm=a2c4g.11186623.0.0.41883b2blvwJp8#371a2dd1fetbj
@@ -51,7 +57,13 @@ public class AliyunOss {
         return url;
     }
 
-    //上传电影bt文件
+    /**
+     * 上传电影bt文件
+     * @param file
+     * @return
+     * @throws IOException
+     * @throws ClientException
+     */
     public String uploadMovieBt(MultipartFile file) throws IOException, ClientException {
         // 从环境变量中获取访问凭证。运行本代码示例之前，请确保已设置环境变量OSS_ACCESS_KEY_ID和OSS_ACCESS_KEY_SECRET。
         //需要配置环境变量，配置文档url：https://help.aliyun.com/zh/oss/developer-reference/oss-java-configure-access-credentials?spm=a2c4g.11186623.0.0.41883b2blvwJp8#371a2dd1fetbj
@@ -75,7 +87,14 @@ public class AliyunOss {
         //返回一个上传文件的路径url
         return url;
     }
-    //上传电影字幕文件
+
+    /**
+     * 上传电影字幕文件
+     * @param file
+     * @return
+     * @throws IOException
+     * @throws ClientException
+     */
     public String uploadSubTitle(MultipartFile file) throws IOException, ClientException {
         // 从环境变量中获取访问凭证。运行本代码示例之前，请确保已设置环境变量OSS_ACCESS_KEY_ID和OSS_ACCESS_KEY_SECRET。
         //需要配置环境变量，配置文档url：https://help.aliyun.com/zh/oss/developer-reference/oss-java-configure-access-credentials?spm=a2c4g.11186623.0.0.41883b2blvwJp8#371a2dd1fetbj
@@ -99,7 +118,14 @@ public class AliyunOss {
         //返回一个上传文件的路径url
         return url;
     }
-    //上传电影封面
+
+    /**
+     * 上传电影封面
+     * @param file
+     * @return
+     * @throws IOException
+     * @throws ClientException
+     */
     public String uploadMovieCoverImage(MultipartFile file) throws IOException, ClientException {
         // 从环境变量中获取访问凭证。运行本代码示例之前，请确保已设置环境变量OSS_ACCESS_KEY_ID和OSS_ACCESS_KEY_SECRET。
         //需要配置环境变量，配置文档url：https://help.aliyun.com/zh/oss/developer-reference/oss-java-configure-access-credentials?spm=a2c4g.11186623.0.0.41883b2blvwJp8#371a2dd1fetbj
