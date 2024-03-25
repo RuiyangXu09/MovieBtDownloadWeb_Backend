@@ -68,7 +68,7 @@ public class MovieBtServiceImpl implements MovieBtService {
      * @param btDownloadUrl
      */
     @Override
-    @Transactional
+    @Transactional(rollbackFor = Exception.class)
     public void countAddOne(String btDownloadUrl) {
         movieBtMapper.countAddOne(btDownloadUrl);
     }

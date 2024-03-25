@@ -5,8 +5,8 @@
 <mapper namespace="com.example.moviedownloadbtweb.mapper.UserMapper">
 <!--    用户注册-->
     <insert id="registerUser">
-        INSERT INTO user(username, password, avatar_url)
-        VALUES (#{username}, #{password}, #{avatarUrl})
+        INSERT INTO user(username, email, password, avatar_url)
+        VALUES (#{username},  #{email}, #{password}, #{avatarUrl})
     </insert>
 <!--    修改用户信息-->
     <update id="updateUser">

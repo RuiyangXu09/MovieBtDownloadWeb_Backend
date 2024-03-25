@@ -17,6 +17,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public Result ExceptionHandler(Exception exception){
         exception.printStackTrace();
-        return Result.error("Error, waiting to resolve.");
+        return Result.error("Error." + exception.getMessage());
     }
 }

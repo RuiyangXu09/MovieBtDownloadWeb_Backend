@@ -19,17 +19,17 @@ import java.io.IOException;
 @RequestMapping(value = "/api/v1/user")
 public class UserController {
     /**
-     * 注入user的service层
+     * 注入UserService的bean
      */
     @Autowired
     UserService userService;
     /**
-     * 注入jwt令牌
+     * 注入Jwt的bean
      */
     @Autowired
     Jwt jwt;
     /**
-     * 注入阿里云oss
+     * 注入AliyunOss的bean
      */
     @Autowired
     AliyunOss aliyunOss;
@@ -40,13 +40,13 @@ public class UserController {
      * @return
      */
     @PostMapping(value = "registerUser")
-    public Result registerUser(@RequestBody User user){
+    public Result registerUser(User user){
         //检查username是否重复，重复返回一个info
         if (userService.checkDuplicateUsername(user)){
-            return Result.error("Username duplicated.");
+            return Result.error("Username duplicated");
         }else {
-            //调用service完成用户的注册
             userService.registerUser(user);
+            //调用service完成用户的注册
             return Result.success();
         }
     }

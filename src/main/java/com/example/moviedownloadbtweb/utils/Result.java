@@ -3,18 +3,21 @@ package com.example.moviedownloadbtweb.utils;
 /**
  * Json格式的返回信息，前后端统一的响应结果
  */
-public class Result {
+public class Result<T> {
     private Integer code;
-    private Object data;
     private String msg;
+    /**
+     * 使用泛型接收data
+     */
+    private T data;
 
     public Result() {
     }
 
-    public Result(Integer code, Object data, String msg) {
+    public Result(Integer code, String msg, T data) {
         this.code = code;
-        this.data = data;
         this.msg = msg;
+        this.data = data;
     }
 
     public Integer getCode() {
@@ -25,14 +28,6 @@ public class Result {
         this.code = code;
     }
 
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
-
     public String getMsg() {
         return msg;
     }
@@ -41,21 +36,29 @@ public class Result {
         this.msg = msg;
     }
 
-    public static Result success(Object data){
-        return new Result(1, data, "Success");
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public static <E> Result<E> success(E data){
+        return new Result<>(1, "Success.", data);
     }
 
     /**
      *  重载方法，无data传入参数
      */
-    public static Result success(){
-        return new Result(1, null, "Success");
+    public static <E> Result<E> success(){
+        return new Result<>(1, "Success", null);
     }
 
     /**
      * 失败响应，只传入msg作为参数，只返回msg和code状态码
      */
-    public static Result error(String msg){
-        return new Result(0, null, msg);
+    public static <E> Result<E> error(String msg){
+        return new Result<>(0, msg, null);
     }
 }

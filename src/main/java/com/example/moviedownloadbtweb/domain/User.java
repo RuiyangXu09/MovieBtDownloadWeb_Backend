@@ -6,15 +6,17 @@ package com.example.moviedownloadbtweb.domain;
 public class User {
     private Integer id;
     private String username;
+    private String email;
     private String password;
     private String avatarUrl;
 
     public User() {
     }
 
-    public User(Integer id, String username, String password, String avatarUrl) {
+    public User(Integer id, String username, String email, String password, String avatarUrl) {
         this.id = id;
         this.username = username;
+        this.email = email;
         this.password = password;
         this.avatarUrl = avatarUrl;
     }
@@ -33,6 +35,14 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getPassword() {
@@ -56,6 +66,7 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", avatarUrl='" + avatarUrl + '\'' +
                 '}';
