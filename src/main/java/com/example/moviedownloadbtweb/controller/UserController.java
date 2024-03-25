@@ -41,13 +41,22 @@ public class UserController {
      */
     @PostMapping(value = "registerUser")
     public Result registerUser(User user){
-        //检查username是否重复，重复返回一个info
-        if (userService.checkDuplicateUsername(user)){
-            return Result.error("Username duplicated");
+        //检查用户名和密码是否为空
+        if (user.getUsername() != null && !user.getUsername().isEmpty() && user.getPassword() != null && !user.getPassword().isEmpty()){
+            if (user.getPassword().length() >= 5 && user.getPassword().length() <= 10){
+                //检查username是否重复，重复返回一个info
+                if (userService.checkDuplicateUsername(user)){
+                    return Result.error("Username duplicated.");
+                }else {
+                    userService.registerUser(user);
+                    //调用service完成用户的注册
+                    return Result.success();
+                }
+            }else {
+                return Result.error("Password must be between 5 and 10 characters.");
+            }
         }else {
-            userService.registerUser(user);
-            //调用service完成用户的注册
-            return Result.success();
+            return Result.error("Username or Password could not be empty.");
         }
     }
 

@@ -38,7 +38,10 @@ public class LoginInterceptor implements HandlerInterceptor {
         if (url.contains("login")){
             //放行
             return true;
-        }else {
+        } else if (url.contains("register")) {
+            //判断是否包含register字段，包含就放行，return true;
+            return true;
+        } else {
             //其他路径都要检测是否包含token
             String token = request.getHeader("token");
             //判断token是否存在，如果不存在，返回错误信息，使用该工具类判断字符串中是否有值（长度，因为字符串可以为空），取反就是没有长度（值）

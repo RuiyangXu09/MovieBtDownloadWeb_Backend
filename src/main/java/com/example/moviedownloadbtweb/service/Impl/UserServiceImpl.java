@@ -1,17 +1,10 @@
 package com.example.moviedownloadbtweb.service.Impl;
 
-import com.aliyuncs.exceptions.ClientException;
 import com.example.moviedownloadbtweb.domain.User;
 import com.example.moviedownloadbtweb.mapper.UserMapper;
 import com.example.moviedownloadbtweb.service.UserService;
-import com.example.moviedownloadbtweb.utils.AliyunOss;
-import com.example.moviedownloadbtweb.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
-
 /**
  * 用户功能的实现类
  */
@@ -64,5 +57,4 @@ public class UserServiceImpl implements UserService {
     /**
      * @param avatarUrl
      */
-
 }

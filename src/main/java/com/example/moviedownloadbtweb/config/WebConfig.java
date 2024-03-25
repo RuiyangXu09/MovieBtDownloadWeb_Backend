@@ -23,7 +23,7 @@ public class WebConfig implements WebMvcConfigurer {
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        //配置需要拦截哪些路径addPathPatterns，不需要拦截的路径的方法是excludePathPatterns
-        registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns("/login");
+        //配置需要拦截哪些路径addPathPatterns，不需要拦截的路径的方法是excludePathPatterns，排除路径login和register
+        registry.addInterceptor(loginInterceptor).addPathPatterns("/**").excludePathPatterns("/login", "/register");
     }
 }

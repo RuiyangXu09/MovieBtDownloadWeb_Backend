@@ -52,7 +52,7 @@ public class Result<T> {
      *  重载方法，无data传入参数
      */
     public static <E> Result<E> success(){
-        return new Result<>(1, "Success", null);
+        return new Result<>(1, "Success.", null);
     }
 
     /**

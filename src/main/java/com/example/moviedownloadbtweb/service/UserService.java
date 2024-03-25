@@ -1,10 +1,6 @@
 package com.example.moviedownloadbtweb.service;
 
-import com.aliyuncs.exceptions.ClientException;
 import com.example.moviedownloadbtweb.domain.User;
-import org.springframework.web.multipart.MultipartFile;
-
-import java.io.IOException;
 
 /**
  * 用户的各项功能
