@@ -64,7 +64,8 @@ public class LoginInterceptor implements HandlerInterceptor {
                 Result errorInfo = Result.error("Authorization Failed.");
                 //将result类型的error信息转换为json字符串
                 String notLoginMsg = JSONObject.toJSONString(errorInfo);
-                //信息返回给前端
+                //信息返回给前端，设置http响应码为401
+                response.setStatus(401);
                 response.getWriter().write(notLoginMsg);
                 //token错误，return false不放行
                 return false;

@@ -39,13 +39,13 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 根据id查询用户信息
-     * @param id
+     * 获取用户信息
+     * @param userId
      * @return
      */
     @Override
-    public User getUserById(Integer id) {
-        return userMapper.getUserById(id);
+    public User getUserInfo(int userId) {
+        return userMapper.getUserInfo(userId);
     }
 
     /**
@@ -57,8 +57,4 @@ public class UserServiceImpl implements UserService {
     public boolean checkDuplicateUsername(User user) {
         return userMapper.checkDuplicateUsername(user);
     }
-
-    /**
-     * @param avatarUrl
-     */
 }

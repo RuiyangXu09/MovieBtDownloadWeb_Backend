@@ -23,21 +23,11 @@
             id = #{id}
         </where>
     </update>
-<!--    根据id查询用户信息-->
-    <select id="getUserById" resultType="com.example.moviedownloadbtweb.domain.User">
-        SELECT *
+<!--    根据id获取用户信息-->
+    <select id="getUserInfo" resultType="com.example.moviedownloadbtweb.domain.User">
+        SELECT id, username, email, avatar_url
         FROM user
         WHERE id = #{id}
-    </select>
-<!--    用户登录-->
-    <select id="userLogin" resultType="com.example.moviedownloadbtweb.domain.User">
-        SELECT *
-        FROM user
-        <where>
-            username = #{username}
-            AND
-            password = #{password}
-        </where>
     </select>
 <!--    检查username是否重复-->
     <select id="checkDuplicateUsername" resultType="java.lang.Boolean">

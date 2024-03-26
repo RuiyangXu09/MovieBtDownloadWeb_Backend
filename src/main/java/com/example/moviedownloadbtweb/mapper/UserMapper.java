@@ -21,11 +21,11 @@ public interface UserMapper {
     void updateUser(User user);
 
     /**
-     * 根据id查询用户信息
-     * @param id
+     * 获取用户信息
+     * @param userId
      * @return
      */
-    User getUserById(Integer id);
+    User getUserInfo(int userId);
 
     /**
      * 检查username是否重复

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * 用户controller
@@ -28,6 +29,8 @@ public class UserController {
      */
     @Autowired
     private AliyunOss aliyunOss;
+    @Autowired
+    private Jwt jwt;
 
     /**
      * 用户注册
@@ -81,14 +84,19 @@ public class UserController {
     }
 
     /**
-     * 根据id查询用户信息
-     * @param id
+     * 获取用户信息，根据传过来的token获取
+     * @param token
      * @return
      */
-    @GetMapping(value = "getUserById")
-    public Result getUserById(Integer id){
-        User user = userService.getUserById(id);
-        //返回前端一个user对象，封装在result中
+    @GetMapping(value = "getUserInfo")
+    public Result getUserInfo(@RequestHeader(name = "token") String token){
+        //解析请求头中的token，返回一个User类型的集合
+        Map<String, Object> userMap = jwt.parseJwt(token);
+        //强转为String类型，找到请求头中的字段名id中的值
+        int userId = (int) userMap.get("id");
+        //获取userId并作为参数传入service层中的方法getUserInfo，返回一个user对象，user对象中包含用户的必要信息
+        User user = userService.getUserInfo(userId);
+
         return Result.success(user);
     }
 }
