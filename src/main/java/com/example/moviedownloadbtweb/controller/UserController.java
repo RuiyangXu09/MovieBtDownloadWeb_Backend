@@ -40,7 +40,7 @@ public class UserController {
      * @return
      */
     @PostMapping(value = "registerUser")
-    public Result registerUser(User user){
+    public Result registerUser(@RequestBody User user){
         //检查用户名和密码是否为空
         if (user.getUsername() != null && !user.getUsername().isEmpty() && user.getPassword() != null && !user.getPassword().isEmpty()){
             if (user.getPassword().length() >= 5 && user.getPassword().length() <= 10){

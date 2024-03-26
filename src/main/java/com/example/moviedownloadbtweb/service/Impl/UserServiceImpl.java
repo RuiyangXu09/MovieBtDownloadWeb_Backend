@@ -3,6 +3,7 @@ package com.example.moviedownloadbtweb.service.Impl;
 import com.example.moviedownloadbtweb.domain.User;
 import com.example.moviedownloadbtweb.mapper.UserMapper;
 import com.example.moviedownloadbtweb.service.UserService;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 /**
@@ -22,6 +23,9 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void registerUser(User user) {
+        //使用bcrypt对用户密码加密
+        String hashedUserPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+        user.setPassword(hashedUserPassword);
         userMapper.registerUser(user);
     }
 

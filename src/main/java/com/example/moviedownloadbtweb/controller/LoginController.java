@@ -32,7 +32,7 @@ public class LoginController {
     private Jwt jwt;
 
     /**
-     * 管理员登录，不推荐名称和密码的分开验证，有暴力破解的危险性
+     * 管理员登录的controller，不推荐名称和密码的分开验证，有暴力破解的危险性
      * @param admin
      * @return
      */
@@ -57,18 +57,23 @@ public class LoginController {
         }
     }
 
+    /**
+     * 用户登录的controller
+     * @param user
+     * @return
+     */
     @PostMapping(value = "userLogin")
     public Result userLogin(@RequestBody User user){
         //需要存储传递返回值，类型为User对象
-        User usr = loginService.userLogin(user);
-        if (usr != null){
+        User userDatabase = loginService.userLogin(user);
+        if (userDatabase != null){
             //创建一个map对象claims，用于存储登录信息
             Map<String, Object> claims = new HashMap<>();
-            //添加需要存储的信息
-            claims.put("id", user.getId());
-            claims.put("username", user.getUsername());
-            claims.put("password", user.getPassword());
-            claims.put("avatar_url", user.getAvatarUrl());
+            //添加需要存储的信息，需要传入的是数据库返回的userDatabase中存储的信息
+            claims.put("id", userDatabase.getId());
+            claims.put("username", userDatabase.getUsername());
+            claims.put("avatar_url", userDatabase.getAvatarUrl());
+            claims.put("email", userDatabase.getEmail());
             //生成token，包含claims内容，也就是管理员登录的必要信息
             String token = jwt.generateJwt(claims);
             //将token值返回到前端

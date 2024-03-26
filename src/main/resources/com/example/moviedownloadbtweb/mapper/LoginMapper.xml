@@ -23,4 +23,12 @@
             password = #{password}
         </where>
     </select>
+    <!--根据用户名查找信息-->
+    <select id="getUserByUsername" resultType="com.example.moviedownloadbtweb.domain.User">
+        SELECT *
+        FROM user
+        <where>
+            username = #{username}
+        </where>
+    </select>
 </mapper>

@@ -4,6 +4,8 @@ import com.example.moviedownloadbtweb.domain.Admin;
 import com.example.moviedownloadbtweb.domain.User;
 import com.example.moviedownloadbtweb.mapper.LoginMapper;
 import com.example.moviedownloadbtweb.service.LoginService;
+import com.example.moviedownloadbtweb.utils.Result;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,6 +36,23 @@ public class LoginServiceImpl implements LoginService {
      */
     @Override
     public User userLogin(User user) {
-        return loginMapper.userLogin(user);
+        //getUserByUsername方法返回查询到的user信息，封装到一个对象中
+        User userFormDatabase = loginMapper.getUserByUsername(user.getUsername());
+        //验证对象是否存在
+        if (userFormDatabase != null){
+            //验证用户输入的密码是否与数据库中的哈希值匹配
+            boolean passwordMatched = BCrypt.checkpw(user.getPassword(), userFormDatabase.getPassword());
+            //匹配就返回true
+            if (passwordMatched){
+                //返回一个user对象，封装了所有字段信息
+                return loginMapper.userLogin(userFormDatabase);
+            }else {
+                //密码不匹配，抛出异常，交给controller层返回result的信息
+                return null;
+            }
+        }else {
+            //对象不存在，抛出异常，交给controller层返回result的信息
+            return null;
+        }
     }
 }

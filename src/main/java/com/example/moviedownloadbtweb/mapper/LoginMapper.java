@@ -21,4 +21,11 @@ public interface LoginMapper {
      * @return
      */
     User userLogin(User user);
+
+    /**
+     * 查找用户名
+     * @param username
+     * @return
+     */
+    User getUserByUsername(String username);
 }
