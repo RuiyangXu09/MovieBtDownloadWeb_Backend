@@ -22,17 +22,12 @@ public class UserController {
      * 注入UserService的bean
      */
     @Autowired
-    UserService userService;
-    /**
-     * 注入Jwt的bean
-     */
-    @Autowired
-    Jwt jwt;
+    private UserService userService;
     /**
      * 注入AliyunOss的bean
      */
     @Autowired
-    AliyunOss aliyunOss;
+    private AliyunOss aliyunOss;
 
     /**
      * 用户注册

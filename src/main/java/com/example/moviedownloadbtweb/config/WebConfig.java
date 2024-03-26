@@ -15,7 +15,7 @@ public class WebConfig implements WebMvcConfigurer {
      * 注入拦截器的方法
      */
     @Autowired
-    LoginInterceptor loginInterceptor;
+    private LoginInterceptor loginInterceptor;
 
     /**
      * 添加拦截器需要拦截的路径，/** 为拦截所有路径

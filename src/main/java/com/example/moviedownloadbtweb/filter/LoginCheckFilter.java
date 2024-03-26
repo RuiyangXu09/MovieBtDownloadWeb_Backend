@@ -18,7 +18,7 @@ import java.io.IOException;
 //@WebFilter(urlPatterns = "/*")
 public class LoginCheckFilter implements Filter {
     @Autowired
-    Jwt jwt;
+    private Jwt jwt;
     /**
      * 初始化过滤器
      * @param filterConfig

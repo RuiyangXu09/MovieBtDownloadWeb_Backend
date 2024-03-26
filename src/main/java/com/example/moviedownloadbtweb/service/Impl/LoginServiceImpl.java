@@ -18,7 +18,7 @@ public class LoginServiceImpl implements LoginService {
      * 注入对应的mapper层接口中的方法来操作数据库
      */
     @Autowired
-    LoginMapper loginMapper;
+    private LoginMapper loginMapper;
     /**
      * 管理员登录
      * @param admin

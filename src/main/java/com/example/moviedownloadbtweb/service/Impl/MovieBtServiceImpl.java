@@ -20,7 +20,7 @@ public class MovieBtServiceImpl implements MovieBtService {
      * 注入对应的mapper接口
      */
     @Autowired
-    MovieBtMapper movieBtMapper;
+    private MovieBtMapper movieBtMapper;
 
     /**
      * 新增电影bt，重写service接口中的方法，时间设置为LocalDate.now()，调用mapper接口中对应的insert方法

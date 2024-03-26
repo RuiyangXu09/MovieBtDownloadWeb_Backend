@@ -18,12 +18,7 @@ public class AdminController {
      * 注入adminService层
      */
     @Autowired
-    AdminService adminService;
-    /**
-     * 注入jwt令牌
-     */
-    @Autowired
-    Jwt jwt;
+    private AdminService adminService;
     /**
      * 删除对应的用户，传入参数为Integer id，删除操作，不需要返回数据
      */

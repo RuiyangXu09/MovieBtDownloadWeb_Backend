@@ -42,12 +42,11 @@ public class LoginController {
         Admin ad = loginService.adminLogin(admin);
         //登录成功，生成jwt令牌
         if (ad != null){
-            //创建一个map对象claims，用于存储登录信息
+            //创建一个map对象claims，用于存储登录信息，不包括私密信息
             Map<String, Object> claims = new HashMap<>();
             //添加需要存储的信息
             claims.put("id", ad.getId());
             claims.put("admin_name", ad.getAdminName());
-            claims.put("admin_password", ad.getAdminPassword());
             //生成token，包含claims内容，也就是管理员登录的必要信息
             String token = jwt.generateJwt(claims);
             //将token值返回到前端
@@ -67,7 +66,7 @@ public class LoginController {
         //需要存储传递返回值，类型为User对象
         User userDatabase = loginService.userLogin(user);
         if (userDatabase != null){
-            //创建一个map对象claims，用于存储登录信息
+            //创建一个map对象claims，用于存储登录信息，不包括私密信息
             Map<String, Object> claims = new HashMap<>();
             //添加需要存储的信息，需要传入的是数据库返回的userDatabase中存储的信息
             claims.put("id", userDatabase.getId());

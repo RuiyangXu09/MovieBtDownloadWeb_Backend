@@ -12,7 +12,8 @@ import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 /**
- * 拦截器功能，实现spring组件中提供的接口HandlerInterceptor中的方法
+ * 拦截器功能，拦截所有token不合法，未持有token的请求
+ * 实现spring组件中提供的接口HandlerInterceptor中的方法
  */
 @Component
 public class LoginInterceptor implements HandlerInterceptor {
@@ -20,7 +21,7 @@ public class LoginInterceptor implements HandlerInterceptor {
      * 注入令牌
      */
     @Autowired
-    Jwt jwt;
+    private Jwt jwt;
 
     /**
      * 让目标资源运行前执行该方法，需要返回值为true则放行，拦截器校验应使用在第一个preHandle方法中，因为只有这个是运行在controller方法之前
@@ -46,7 +47,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             String token = request.getHeader("token");
             //判断token是否存在，如果不存在，返回错误信息，使用该工具类判断字符串中是否有值（长度，因为字符串可以为空），取反就是没有长度（值）
             if (!StringUtils.hasLength(token)){
-                Result errorInfo = Result.error("Please Login.");
+                Result errorInfo = Result.error("Authorization Failed.");
                 //将result类型的error信息转换为json字符串
                 String notLoginMsg = JSONObject.toJSONString(errorInfo);
                 //信息返回给前端
@@ -60,7 +61,7 @@ public class LoginInterceptor implements HandlerInterceptor {
                 jwt.parseJwt(token);
             }catch (Exception e){
                 e.printStackTrace();
-                Result errorInfo = Result.error("Please Login.");
+                Result errorInfo = Result.error("Authorization Failed.");
                 //将result类型的error信息转换为json字符串
                 String notLoginMsg = JSONObject.toJSONString(errorInfo);
                 //信息返回给前端

@@ -23,12 +23,12 @@ public class MovieBtController {
      *注入对应的service层
      */
     @Autowired
-    MovieBtService movieBtService;
+    private MovieBtService movieBtService;
     /**
      * 注入阿里云oss
      */
     @Autowired
-    AliyunOss aliyunOss;
+    private AliyunOss aliyunOss;
 
     /**
      * 新增电影bt信息
