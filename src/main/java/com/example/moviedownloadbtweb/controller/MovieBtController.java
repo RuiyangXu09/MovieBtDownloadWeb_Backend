@@ -20,7 +20,7 @@ import java.util.List;
     @RequestMapping(value = "/api/v1/movie")
 public class MovieBtController {
     /**
-     *注入对应的service层
+     *注入MovieBtService的bean
      */
     @Autowired
     private MovieBtService movieBtService;

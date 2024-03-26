@@ -21,7 +21,7 @@ import java.util.Map;
 @RequestMapping(value = "/api/v1/login")
 public class LoginController {
     /**
-     * 注入登录的service层
+     * 注入LoginService的bean
      */
     @Autowired
     private LoginService loginService;

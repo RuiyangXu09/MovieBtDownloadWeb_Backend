@@ -5,8 +5,11 @@ import com.example.moviedownloadbtweb.domain.PageBean;
 import com.example.moviedownloadbtweb.service.AdminService;
 import com.example.moviedownloadbtweb.utils.Jwt;
 import com.example.moviedownloadbtweb.utils.Result;
+import com.example.moviedownloadbtweb.utils.ThreadLocalUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * 管理员controller
@@ -15,7 +18,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(value = "/api/v1/admin")
 public class AdminController {
     /**
-     * 注入adminService层
+     * 注入adminService的bean
      */
     @Autowired
     private AdminService adminService;
@@ -44,12 +47,15 @@ public class AdminController {
 
     /**
      * 根据id查询管理员信息
-     * @param id
      * @return
      */
-    @GetMapping(value = "getAdminById")
-    public Result getAdminById(Integer id){
-        Admin admin = adminService.getAdminById(id);
+    @GetMapping(value = "getAdminInfo")
+    public Result getAdminInfo(){
+        //获取解析后的token值，map形式
+        Map<String, Object> adminMap = ThreadLocalUtils.get();
+        //将键值对中key为id的数据取出，强转为id类型数据，赋值给adminId
+        int adminId = (int) adminMap.get("id");
+        Admin admin = adminService.getAdminInfo(adminId);
         //返回前端一个admin对象，封装在result中
         return Result.success(admin);
     }

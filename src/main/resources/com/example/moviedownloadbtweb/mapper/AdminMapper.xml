@@ -19,9 +19,9 @@
         FROM user
         LIMIT #{indexStart}, #{pageSize}
     </select>
-<!--    根据id查询用户信息-->
-    <select id="getAdminById" resultType="com.example.moviedownloadbtweb.domain.Admin">
-        SELECT *
+<!--    根据id查询管理员信息-->
+    <select id="getAdminInfo" resultType="com.example.moviedownloadbtweb.domain.Admin">
+        SELECT id, admin_name
         FROM admin
         WHERE id = #{id}
     </select>

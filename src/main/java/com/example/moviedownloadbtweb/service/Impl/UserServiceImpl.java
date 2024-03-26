@@ -35,6 +35,8 @@ public class UserServiceImpl implements UserService {
      */
     @Override
     public void updateUser(User user) {
+        String hashedUserPassword = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
+        user.setPassword(hashedUserPassword);
         userMapper.updateUser(user);
     }
 

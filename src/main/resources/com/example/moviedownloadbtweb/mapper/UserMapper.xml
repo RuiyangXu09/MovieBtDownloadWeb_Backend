@@ -12,11 +12,17 @@
     <update id="updateUser">
         UPDATE user
         <set>
+            <if test="username != null and username !=''">
+                username = #{username},
+            </if>
             <if test="password != null and password !=''">
                 password = #{password},
             </if>
             <if test="avatarUrl != null and avatarUrl !=''">
                 avatar_url = #{avatarUrl},
+            </if>
+            <if test="email != null and email !=''">
+                email = #{email},
             </if>
         </set>
         <where>

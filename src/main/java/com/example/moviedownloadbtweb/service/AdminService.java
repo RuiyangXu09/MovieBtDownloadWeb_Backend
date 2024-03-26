@@ -23,8 +23,8 @@ public interface AdminService {
 
     /**
      * 根据id查询用户信息
-     * @param id
+     * @param adminId
      * @return
      */
-    Admin getAdminById(Integer id);
+    Admin getAdminInfo(int adminId);
 }

@@ -49,11 +49,11 @@ public class AdminServiceImpl implements AdminService {
 
     /**
      * 根据id查询用户信息
-     * @param id
+     * @param adminId
      * @return
      */
     @Override
-    public Admin getAdminById(Integer id) {
-        return adminMapper.getAdminById(id);
+    public Admin getAdminInfo(int adminId) {
+        return adminMapper.getAdminInfo(adminId);
     }
 }

@@ -3,6 +3,7 @@ package com.example.moviedownloadbtweb.interceptor;
 import com.alibaba.fastjson.JSONObject;
 import com.example.moviedownloadbtweb.utils.Jwt;
 import com.example.moviedownloadbtweb.utils.Result;
+import com.example.moviedownloadbtweb.utils.ThreadLocalUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Map;
 
 /**
  * 拦截器功能，拦截所有token不合法，未持有token的请求
@@ -58,7 +61,10 @@ public class LoginInterceptor implements HandlerInterceptor {
 
             //解析token，解析失败，返回错误信息
             try {
-                jwt.parseJwt(token);
+                //解析token得到的数据赋值给map类型的变量claims
+                Map<String, Object> claims = jwt.parseJwt(token);
+                //启用ThreadLocal，将根据不同token解析得到的键值对变量claims设置到线程中
+                ThreadLocalUtils.set(claims);
             }catch (Exception e){
                 e.printStackTrace();
                 Result errorInfo = Result.error("Authorization Failed.");
@@ -99,5 +105,7 @@ public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
         HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
+        //清空ThreadLocal对象的数据，防止内存泄露
+        ThreadLocalUtils.remove();
     }
 }
