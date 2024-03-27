@@ -63,4 +63,11 @@ public interface MovieBtMapper {
      * @return
      */
     MovieBt getMovieById(Integer id);
+
+    /**
+     * 查询电影信息
+     * @param movieName
+     * @return
+     */
+    List<MovieBt> searchMovieByMovieName(String movieName);
 }

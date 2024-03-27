@@ -15,7 +15,7 @@
     </select>
 <!--    用户信息分页功能，接收两个参数，一个起始索引，一个每页的数据列表返回数-->
     <select id="pageUserList" resultType="com.example.moviedownloadbtweb.domain.User">
-        SELECT id, username, avatar_url
+        SELECT id, username, avatar_url, email
         FROM user
         LIMIT #{indexStart}, #{pageSize}
     </select>

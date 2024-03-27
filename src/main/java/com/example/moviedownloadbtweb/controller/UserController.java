@@ -82,7 +82,6 @@ public class UserController {
                 }else {
                     return Result.error("Not your ID");
                 }
-
             }else {
                 return Result.error("Password must be between 5 and 10 characters.");
             }

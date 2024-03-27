@@ -8,7 +8,10 @@ import java.time.LocalDate;
 public class MovieBt {
     private Integer id;
     private String movieName;
-    private Integer category; //1：动作，2：科幻，3：冒险，4：动画
+    /**
+     *  1：动作，2：科幻，3：冒险，4：动画
+     */
+    private Integer category;
     private LocalDate createTime;
     private LocalDate updateTime;
     private String btDownloadUrl;

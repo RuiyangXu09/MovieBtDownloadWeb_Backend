@@ -25,7 +25,7 @@ public class MovieBtController {
     @Autowired
     private MovieBtService movieBtService;
     /**
-     * 注入阿里云oss
+     * 注入阿里云oss的bean
      */
     @Autowired
     private AliyunOss aliyunOss;
@@ -130,5 +130,16 @@ public class MovieBtController {
         MovieBt movieBt = movieBtService.getMovieById(id);
         //返回前端一个MovieBt对象，封装在result中
         return Result.success(movieBt);
+    }
+
+    /**
+     * 查询电影，因为模糊查询有多条数据，所以要用一个list来接收
+     * @param movieName
+     * @return
+     */
+    @GetMapping(value = "searchMovieByMovieName")
+    public Result<List<MovieBt>> searchMovieByMovieName(String movieName){
+        List<MovieBt> movieList = movieBtService.searchMovieByMovieName(movieName);
+        return Result.success(movieList);
     }
 }

@@ -6,9 +6,13 @@ import java.util.List;
  * 分页查询结果的封装类
  */
 public class PageBean {
-    //总记录数
+    /**
+     * 总记录数
+     */
     private Integer total;
-    //接收返回的数据列表
+    /**
+     * 接收返回的数据列表，有多条数据，用list接收
+     */
     private List rows;
 
     public PageBean() {

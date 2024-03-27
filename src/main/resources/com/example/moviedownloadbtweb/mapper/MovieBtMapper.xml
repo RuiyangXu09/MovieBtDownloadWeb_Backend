@@ -71,4 +71,10 @@
         FROM movie
         WHERE id = #{id}
     </select>
+
+    <select id="searchMovieByMovieName" resultType="com.example.moviedownloadbtweb.domain.MovieBt">
+        SELECT *
+        FROM movie
+        WHERE movie_name LIKE CONCAT('%', #{movieName}, '%')
+    </select>
 </mapper>

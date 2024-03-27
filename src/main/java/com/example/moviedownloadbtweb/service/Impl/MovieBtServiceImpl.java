@@ -99,4 +99,13 @@ public class MovieBtServiceImpl implements MovieBtService {
     public MovieBt getMovieById(Integer id) {
         return movieBtMapper.getMovieById(id);
     }
+
+    /**
+     * @param movieName
+     * @return
+     */
+    @Override
+    public List<MovieBt> searchMovieByMovieName(String movieName) {
+        return movieBtMapper.searchMovieByMovieName(movieName);
+    }
 }

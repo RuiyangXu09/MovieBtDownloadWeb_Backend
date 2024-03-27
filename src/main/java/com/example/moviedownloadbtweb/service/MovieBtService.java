@@ -35,6 +35,7 @@ public interface MovieBtService {
 
     /**
      * 访问该url后，数据库中的count_download次数+1
+     * @param btDownloadUrl
      */
     void countAddOne(String btDownloadUrl);
 
@@ -52,4 +53,7 @@ public interface MovieBtService {
      * @return
      */
     MovieBt getMovieById(Integer id);
+
+
+    List<MovieBt> searchMovieByMovieName(String movieName);
 }
