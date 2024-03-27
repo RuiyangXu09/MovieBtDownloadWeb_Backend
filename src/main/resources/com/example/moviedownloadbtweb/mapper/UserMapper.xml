@@ -21,9 +21,6 @@
             <if test="avatarUrl != null and avatarUrl !=''">
                 avatar_url = #{avatarUrl},
             </if>
-            <if test="email != null and email !=''">
-                email = #{email},
-            </if>
         </set>
         <where>
             id = #{id}
@@ -35,8 +32,8 @@
         FROM user
         WHERE id = #{id}
     </select>
-<!--    检查username是否重复-->
-    <select id="checkDuplicateUsername" resultType="java.lang.Boolean">
-        SELECT EXISTS(SELECT 1 FROM user WHERE username = #{username})
+<!--    检查email是否重复-->
+    <select id="checkDuplicateEmail" resultType="java.lang.Boolean">
+        SELECT EXISTS(SELECT 1 FROM user WHERE email = #{email})
     </select>
 </mapper>

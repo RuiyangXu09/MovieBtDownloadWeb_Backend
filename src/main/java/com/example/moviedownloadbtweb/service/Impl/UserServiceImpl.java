@@ -51,12 +51,12 @@ public class UserServiceImpl implements UserService {
     }
 
     /**
-     * 检查username是否重复
+     * 检查email是否重复
      * @param user
      * @return
      */
     @Override
-    public boolean checkDuplicateUsername(User user) {
-        return userMapper.checkDuplicateUsername(user);
+    public boolean checkDuplicateEmail(User user) {
+        return userMapper.checkDuplicateEmail(user);
     }
 }

@@ -28,9 +28,9 @@ public interface UserMapper {
     User getUserInfo(int userId);
 
     /**
-     * 检查username是否重复
+     * 检查email是否重复
      * @param user
      * @return
      */
-    boolean checkDuplicateUsername(User user);
+    boolean checkDuplicateEmail(User user);
 }

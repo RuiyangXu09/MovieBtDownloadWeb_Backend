@@ -34,7 +34,7 @@ public class UserController {
     private Jwt jwt;
 
     /**
-     * 用户注册
+     * 用户注册，使用email作为登录名，一旦注册成功，email将不可修改
      * @param user
      * @return
      */
@@ -44,9 +44,9 @@ public class UserController {
         if (user.getUsername() != null && !user.getUsername().isEmpty() && user.getPassword() != null && !user.getPassword().isEmpty()){
             //检查密码长度是否符合标准
             if (user.getPassword().length() >= 5 && user.getPassword().length() <= 10){
-                //检查username是否重复，重复返回一个info
-                if (userService.checkDuplicateUsername(user)){
-                    return Result.error("Username duplicated.");
+                //检查email是否重复，重复返回一个info
+                if (userService.checkDuplicateEmail(user)){
+                    return Result.error("Email duplicated.");
                 }else {
                     userService.registerUser(user);
                     //调用service完成用户的注册
@@ -61,25 +61,20 @@ public class UserController {
     }
 
     /**
-     * 用户修改信息
+     * 用户修改信息，email作为登录名，不可修改
      * @param user
      * @return
      */
     @PutMapping(value = "updateUser")
     public Result updateUser(@RequestBody User user){
-        //TODO 用户名重复校验是否必要等待验证，没有完成根据id修改用户信息，考虑使用token传入id值作为参数而不是user对象，目前仅为demo
+        //TODO 使用email作为登录账号并不可修改，update没有将email字段的数据传入。没有完成根据id修改用户信息，考虑使用token传入id值作为参数而不是user对象，目前仅为demo
         //检查用户名和密码是否为空
         if (user.getUsername() != null && !user.getUsername().isEmpty() && user.getPassword() != null && !user.getPassword().isEmpty()){
             //检查密码长度是否符合标准
             if (user.getPassword().length() >= 5 && user.getPassword().length() <= 10){
-                //检查用户名是否由重复
-                if (userService.checkDuplicateUsername(user)){
-                    return Result.error("Username duplicated.");
-                }else {
-                    //完成更新
-                    userService.updateUser(user);
-                    return Result.success();
-                }
+                //完成更新
+                userService.updateUser(user);
+                return Result.success();
             }else {
                 return Result.error("Password must be between 5 and 10 characters.");
             }
@@ -109,9 +104,9 @@ public class UserController {
     @GetMapping(value = "getUserInfo")
     public Result getUserInfo(){
         //获取token解析后的map类型数据，token已经在登录拦截器中获得
-        Map<String, Object> userMap = ThreadLocalUtils.get();
+        Map<String, Object> userInfoMap = ThreadLocalUtils.get();
         //将键值对中key为id的数据取出，强转为id类型数据，赋值给userId
-        int userId = (int) userMap.get("id");
+        int userId = (int) userInfoMap.get("id");
         //获取userId并作为参数传入service层中的方法getUserInfo，返回一个user对象，user对象中包含用户的必要信息
         User user = userService.getUserInfo(userId);
 
