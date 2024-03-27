@@ -67,14 +67,22 @@ public class UserController {
      */
     @PutMapping(value = "updateUser")
     public Result updateUser(@RequestBody User user){
-        //TODO 使用email作为登录账号并不可修改，update没有将email字段的数据传入。没有完成根据id修改用户信息，考虑使用token传入id值作为参数而不是user对象，目前仅为demo
+        //通过ThreadLocalUtils获取当前进程的用户id
+        Map<String, Object> map = ThreadLocalUtils.get();
+        Integer userId = (Integer) map.get("id");
         //检查用户名和密码是否为空
         if (user.getUsername() != null && !user.getUsername().isEmpty() && user.getPassword() != null && !user.getPassword().isEmpty()){
             //检查密码长度是否符合标准
             if (user.getPassword().length() >= 5 && user.getPassword().length() <= 10){
-                //完成更新
-                userService.updateUser(user);
-                return Result.success();
+                //判断当前进程的id是否与前端登录的用户id相同，防止通过更改前端id去修改其他用户的信息
+                if (user.getId().equals(userId)){
+                    //完成更新
+                    userService.updateUser(user);
+                    return Result.success();
+                }else {
+                    return Result.error("Not your ID");
+                }
+
             }else {
                 return Result.error("Password must be between 5 and 10 characters.");
             }

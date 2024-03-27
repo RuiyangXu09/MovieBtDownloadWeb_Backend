@@ -82,19 +82,6 @@ public class LoginInterceptor implements HandlerInterceptor {
     }
 
     /**
-     * 在目标方法运行之后，运行该方法
-     * @param request
-     * @param response
-     * @param handler
-     * @param modelAndView
-     * @throws Exception
-     */
-    @Override
-    public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {
-        HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
-    }
-
-    /**
      * 在view层渲染完毕后，运行该方法
      * @param request
      * @param response
@@ -104,7 +91,6 @@ public class LoginInterceptor implements HandlerInterceptor {
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
-        HandlerInterceptor.super.afterCompletion(request, response, handler, ex);
         //清空ThreadLocal对象的数据，防止内存泄露
         ThreadLocalUtils.remove();
     }

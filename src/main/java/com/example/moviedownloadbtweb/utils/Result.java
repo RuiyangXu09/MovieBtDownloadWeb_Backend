@@ -44,21 +44,21 @@ public class Result<T> {
         this.data = data;
     }
 
-    public static <E> Result<E> success(E data){
+    public static <T> Result<T> success(T data){
         return new Result<>(1, "Success.", data);
     }
 
     /**
      *  重载方法，无data传入参数
      */
-    public static <E> Result<E> success(){
+    public static <T> Result<T> success(){
         return new Result<>(1, "Success.", null);
     }
 
     /**
      * 失败响应，只传入msg作为参数，只返回msg和code状态码
      */
-    public static <E> Result<E> error(String msg){
+    public static <T> Result<T> error(String msg){
         return new Result<>(0, msg, null);
     }
 }

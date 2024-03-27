@@ -3,9 +3,13 @@ package com.example.moviedownloadbtweb.service.Impl;
 import com.example.moviedownloadbtweb.domain.User;
 import com.example.moviedownloadbtweb.mapper.UserMapper;
 import com.example.moviedownloadbtweb.service.UserService;
+import com.example.moviedownloadbtweb.utils.ThreadLocalUtils;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Map;
+
 /**
  * 用户功能的实现类
  */
