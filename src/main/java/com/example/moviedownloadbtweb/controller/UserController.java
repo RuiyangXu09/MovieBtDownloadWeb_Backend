@@ -30,8 +30,6 @@ public class UserController {
      */
     @Autowired
     private AliyunOss aliyunOss;
-    @Autowired
-    private Jwt jwt;
 
     /**
      * 用户注册，使用email作为登录名，一旦注册成功，email将不可修改
@@ -109,7 +107,7 @@ public class UserController {
      * @return
      */
     @GetMapping(value = "getUserInfo")
-    public Result getUserInfo(){
+    public Result<User> getUserInfo(){
         //获取token解析后的map类型数据，token已经在登录拦截器中获得
         Map<String, Object> userInfoMap = ThreadLocalUtils.get();
         //将键值对中key为id的数据取出，强转为id类型数据，赋值给userId

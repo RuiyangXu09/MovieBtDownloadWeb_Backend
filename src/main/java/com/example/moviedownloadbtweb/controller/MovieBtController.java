@@ -37,8 +37,13 @@ public class MovieBtController {
      */
     @PostMapping(value = "addMovie")
     public Result addMovie(@RequestBody MovieBt movie){
-        movieBtService.addMovie(movie);
-        return Result.success();
+        //验证电影名是否为空
+        if (movie.getMovieName() != null && !movie.getMovieName().isEmpty()){
+            movieBtService.addMovie(movie);
+            return Result.success();
+        }else {
+            return Result.error("Movie Name could not be empty.");
+        }
     }
 
     /**
@@ -48,8 +53,13 @@ public class MovieBtController {
      */
     @PutMapping(value = "updateMovie")
     public Result updateMovie(@RequestBody MovieBt movieBt){
-        movieBtService.updateMovie(movieBt);
-        return Result.success();
+        //验证电影名是否为空
+        if (movieBt.getMovieName() != null && !movieBt.getMovieName().isEmpty()){
+            movieBtService.updateMovie(movieBt);
+            return Result.success();
+        }else {
+            return Result.error("Movie Name could not be empty.");
+        }
     }
 
     /**
@@ -65,7 +75,7 @@ public class MovieBtController {
      * 根据点击次数列出电影信息，由大到小
      */
     @GetMapping(value = "listMovieByClickNumber")
-    public Result listMovieByClickNumber(){
+    public Result<List<MovieBt>> listMovieByClickNumber(){
         List<MovieBt> countMovie = movieBtService.listMovieByClickNumber();
         return Result.success(countMovie);
     }
@@ -84,7 +94,7 @@ public class MovieBtController {
      * 使用注解@RequestParam设定默认page参数和pageSize参数
      */
     @GetMapping("pageMovieList")
-    public Result pageMovieList(@RequestParam(defaultValue = "1") Integer page,
+    public Result<PageBean> pageMovieList(@RequestParam(defaultValue = "1") Integer page,
                                 @RequestParam(defaultValue = "6") Integer pageSize){
         //使用pageBean封装获取的总记录数count和返回的限定条数的数据列表，pageMovie接收前端传递的两个参数page和pageSize
         PageBean pageBean = movieBtService.pageMovieList(page, pageSize);
@@ -126,7 +136,7 @@ public class MovieBtController {
      * @return
      */
     @GetMapping(value = "getMovieById")
-    public Result getMovieById(Integer id){
+    public Result<MovieBt> getMovieById(Integer id){
         MovieBt movieBt = movieBtService.getMovieById(id);
         //返回前端一个MovieBt对象，封装在result中
         return Result.success(movieBt);

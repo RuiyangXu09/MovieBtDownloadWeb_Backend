@@ -38,7 +38,7 @@ public class AdminController {
      * @return
      */
     @GetMapping(value = "pageUserList")
-    public Result pageUserList(@RequestParam(defaultValue = "1") Integer page,
+    public Result<PageBean> pageUserList(@RequestParam(defaultValue = "1") Integer page,
                                @RequestParam(defaultValue = "10") Integer pageSize){
         PageBean pageBean = adminService.pageUserList(page, pageSize);
 
@@ -50,7 +50,7 @@ public class AdminController {
      * @return
      */
     @GetMapping(value = "getAdminInfo")
-    public Result getAdminInfo(){
+    public Result<Admin> getAdminInfo(){
         //获取解析后的token值，map形式
         Map<String, Object> adminMap = ThreadLocalUtils.get();
         //将键值对中key为id的数据取出，强转为id类型数据，赋值给adminId

@@ -4,6 +4,7 @@ import com.example.moviedownloadbtweb.domain.MovieBt;
 import com.example.moviedownloadbtweb.domain.PageBean;
 import com.example.moviedownloadbtweb.mapper.MovieBtMapper;
 import com.example.moviedownloadbtweb.service.MovieBtService;
+import com.example.moviedownloadbtweb.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -101,6 +102,7 @@ public class MovieBtServiceImpl implements MovieBtService {
     }
 
     /**
+     * 查询电影信息
      * @param movieName
      * @return
      */
