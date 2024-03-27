@@ -18,17 +18,17 @@
         SELECT *
         FROM user
         <where>
-            username = #{username}
+            email = #{email}
             AND
             password = #{password}
         </where>
     </select>
     <!--根据用户名查找信息-->
-    <select id="getUserByUsername" resultType="com.example.moviedownloadbtweb.domain.User">
+    <select id="getUserByEmail" resultType="com.example.moviedownloadbtweb.domain.User">
         SELECT *
         FROM user
         <where>
-            username = #{username}
+            email = #{email}
         </where>
     </select>
 </mapper>

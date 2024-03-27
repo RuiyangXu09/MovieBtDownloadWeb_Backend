@@ -78,7 +78,7 @@ public class LoginController {
             //将token值返回到前端
             return Result.success(token);
         }else {
-            return Result.error("Username or Password is not correct");
+            return Result.error("Account name or Password is not correct");
         }
     }
 }

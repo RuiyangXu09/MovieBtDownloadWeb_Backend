@@ -23,9 +23,9 @@ public interface LoginMapper {
     User userLogin(User user);
 
     /**
-     * 查找用户名
-     * @param username
+     * 查找邮箱，用于登录校验
+     * @param email
      * @return
      */
-    User getUserByUsername(String username);
+    User getUserByEmail(String email);
 }

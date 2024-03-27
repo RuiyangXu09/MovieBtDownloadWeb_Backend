@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class LoginServiceImpl implements LoginService {
     /**
-     * 注入对应的mapper层接口中的方法来操作数据库
+     * 注入对应的mapper的bean
      */
     @Autowired
     private LoginMapper loginMapper;
@@ -37,7 +37,7 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public User userLogin(User user) {
         //getUserByUsername方法返回查询到的user信息，封装到一个对象中
-        User userFormDatabase = loginMapper.getUserByUsername(user.getUsername());
+        User userFormDatabase = loginMapper.getUserByEmail(user.getEmail());
         //验证对象是否存在
         if (userFormDatabase != null){
             //验证用户输入的密码是否与数据库中的哈希值匹配
