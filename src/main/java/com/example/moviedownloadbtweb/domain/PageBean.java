@@ -5,20 +5,20 @@ import java.util.List;
 /**
  * 分页查询结果的封装类
  */
-public class PageBean {
+public class PageBean<T> {
     /**
      * 总记录数
      */
     private Integer total;
     /**
-     * 接收返回的数据列表，有多条数据，用list接收
+     * 接收返回的当前页面的数据列表，有多条数据，用list接收
      */
-    private List rows;
+    private List<T> rows;
 
     public PageBean() {
     }
 
-    public PageBean(Integer total, List rows) {
+    public PageBean(Integer total, List<T> rows) {
         this.total = total;
         this.rows = rows;
     }
@@ -31,11 +31,11 @@ public class PageBean {
         this.total = total;
     }
 
-    public List getRows() {
+    public List<T> getRows() {
         return rows;
     }
 
-    public void setRows(List rows) {
+    public void setRows(List<T> rows) {
         this.rows = rows;
     }
 

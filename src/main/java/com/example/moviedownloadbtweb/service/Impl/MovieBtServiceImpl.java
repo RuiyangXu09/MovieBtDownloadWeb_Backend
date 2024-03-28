@@ -1,14 +1,18 @@
 package com.example.moviedownloadbtweb.service.Impl;
 
+import com.aliyuncs.exceptions.ClientException;
 import com.example.moviedownloadbtweb.domain.MovieBt;
 import com.example.moviedownloadbtweb.domain.PageBean;
 import com.example.moviedownloadbtweb.mapper.MovieBtMapper;
 import com.example.moviedownloadbtweb.service.MovieBtService;
+import com.example.moviedownloadbtweb.utils.AliyunOss;
 import com.example.moviedownloadbtweb.utils.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -81,14 +85,14 @@ public class MovieBtServiceImpl implements MovieBtService {
      * @return
      */
     @Override
-    public PageBean pageMovieList(Integer page, Integer pageSize) {
+    public PageBean<MovieBt> pageMovieList(Integer page, Integer pageSize) {
         //获取总记录数
         Integer count = movieBtMapper.countMovie();
         //indexStart为起始索引，计算起始索引的公式为（页码-1）*每页显示数，返回得到的数据列表存入数组中
         Integer indexStart = (page - 1) * pageSize;
         List<MovieBt> pageMovieList = movieBtMapper.pageMovie(indexStart, pageSize);
         //new一个pageBean对象来封装获取到的总记录数和返回的数据列表，对象中有两个参数，一个count接收总记录数，一个list接收数据列表
-        return new PageBean(count, pageMovieList);
+        return new PageBean<MovieBt>(count, pageMovieList);
     }
 
     /**

@@ -1,8 +1,11 @@
 package com.example.moviedownloadbtweb.service;
 
+import com.aliyuncs.exceptions.ClientException;
 import com.example.moviedownloadbtweb.domain.MovieBt;
 import com.example.moviedownloadbtweb.domain.PageBean;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -45,7 +48,7 @@ public interface MovieBtService {
      * @param pageSize
      * @return
      */
-    PageBean pageMovieList(Integer page, Integer pageSize);
+    PageBean<MovieBt> pageMovieList(Integer page, Integer pageSize);
 
     /**
      *根据id查电影信息

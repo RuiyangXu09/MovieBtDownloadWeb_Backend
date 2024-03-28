@@ -94,10 +94,10 @@ public class MovieBtController {
      * 使用注解@RequestParam设定默认page参数和pageSize参数
      */
     @GetMapping("pageMovieList")
-    public Result<PageBean> pageMovieList(@RequestParam(defaultValue = "1") Integer page,
+    public Result<PageBean<MovieBt>> pageMovieList(@RequestParam(defaultValue = "1") Integer page,
                                 @RequestParam(defaultValue = "6") Integer pageSize){
         //使用pageBean封装获取的总记录数count和返回的限定条数的数据列表，pageMovie接收前端传递的两个参数page和pageSize
-        PageBean pageBean = movieBtService.pageMovieList(page, pageSize);
+        PageBean<MovieBt> pageBean = movieBtService.pageMovieList(page, pageSize);
         //将对象pageBean封装到Result中响应给前端即可
         return Result.success(pageBean);
     }
